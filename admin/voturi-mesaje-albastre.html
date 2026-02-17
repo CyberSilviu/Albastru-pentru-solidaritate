@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Voturi Mesaje Albastre | Albastru pentru Solidaritate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .admin-table { width:100%; border-collapse:collapse; background:white; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); }
+    .admin-table th { background:var(--grad-primary); color:white; padding:14px 20px; text-align:left; font-size:0.85rem; font-weight:700; letter-spacing:0.06em; }
+    .admin-table td { padding:14px 20px; border-bottom:1px solid rgba(189,213,234,0.3); vertical-align:middle; }
+    .admin-table tr:last-child td { border-bottom:none; }
+    .admin-table tr:nth-child(even) td { background:rgba(189,213,234,0.06); }
+    .admin-table tr:hover td { background:rgba(96,163,217,0.08); }
+    .vote-bar { background:#eef4fc; border-radius:4px; height:8px; overflow:hidden; min-width:80px; }
+    .vote-bar-fill { height:100%; background:var(--grad-primary); border-radius:4px; transition:width 0.8s ease; }
+  </style>
+</head>
+<body>
+
+<!-- Lock Screen -->
+<div class="admin-lock" id="adminLock" data-storage="votes_ma">
+  <div class="admin-login-card">
+    <div style="font-size:3.5rem; margin-bottom:1rem">🔒</div>
+    <h2>Panou Administrare</h2>
+    <p>Voturi Concurs „Mesaje Albastre"</p>
+    <p style="font-size:0.82rem; color:var(--c-mid); margin-bottom:2rem">Acces restricționat. Introduceți parola de administrator.</p>
+    <form id="adminPwdForm">
+      <div class="form-group">
+        <input type="password" id="adminPassword" class="form-control" placeholder="Parola administrator" autofocus>
+        <p id="pwdError" style="color:#e63946; font-size:0.85rem; font-weight:700; margin-top:0.5rem; display:none">
+          ❌ Parolă incorectă. Încercați din nou.
+        </p>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center">Accesează →</button>
+    </form>
+    <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(189,213,234,0.3)">
+      <a href="../concursuri/mesaje-albastre-voturi.html" style="font-size:0.85rem; color:var(--c-mid)">← Înapoi la pagina de votare</a>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div id="adminPanel" style="display:none">
+  <div id="nav-placeholder" data-depth="1"></div>
+
+  <div class="admin-panel">
+    <div class="container">
+
+      <!-- Header -->
+      <div style="margin-bottom:2.5rem">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:1rem">
+          <div>
+            <span class="section-label">Panou Admin</span>
+            <h1 style="font-size:2rem; margin-top:0.75rem">Voturi — Mesaje Albastre</h1>
+            <p>Clasament complet al lucrărilor, sortat după numărul de voturi primite</p>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem">
+            <div style="background:var(--grad-btn); color:white; padding:1rem 1.5rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md)">
+              <div style="font-size:2rem; font-weight:900; font-family:'Playfair Display',serif" id="totalVotes">0</div>
+              <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.85">Total voturi</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="admin-controls">
+        <button class="btn btn-primary btn-sm" id="exportBtn">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 8v2H5v2h14v-2h-6v-2H11z"/></svg>
+          Exportă JSON
+        </button>
+        <button class="btn btn-light btn-sm" id="refreshBtn">
+          🔄 Reîncarcă datele
+        </button>
+        <button class="btn btn-sm" style="background:#e63946;color:white" id="resetBtn">
+          ⚠️ Resetează voturile
+        </button>
+        <span style="font-size:0.82rem; color:var(--t-soft); margin-left:auto">
+          Ultima actualizare: <strong id="lastUpdate"></strong>
+        </span>
+      </div>
+
+      <!-- Top 3 podium -->
+      <div style="background:linear-gradient(135deg,rgba(0,59,115,0.04),rgba(96,163,217,0.08)); border-radius:var(--radius-lg); padding:2.5rem; margin-bottom:2.5rem; border:1px solid rgba(189,213,234,0.3)">
+        <h3 style="margin-bottom:1.5rem; color:var(--c-dark)">🏆 Top 3 Lucrări</h3>
+        <div id="top3Grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem"></div>
+      </div>
+
+      <!-- Full table -->
+      <h3 style="margin-bottom:1.25rem; color:var(--c-dark)">📊 Clasament Complet</h3>
+      <div style="overflow-x:auto; border-radius:var(--radius)">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th style="width:60px">Loc</th>
+              <th>Lucrare</th>
+              <th style="min-width:160px">Voturi</th>
+              <th>ID</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody">
+            <tr><td colspan="4" style="text-align:center; padding:2rem; color:var(--t-soft)">Se încarcă...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Info -->
+      <div style="margin-top:2rem; padding:1.25rem 1.5rem; background:rgba(0,133,199,0.06); border-radius:var(--radius-sm); border:1px solid rgba(0,133,199,0.15)">
+        <p style="margin:0; font-size:0.85rem; color:var(--t-soft)">
+          ℹ️ <strong>Notă:</strong> Voturile sunt stocate în localStorage-ul browserelor utilizatorilor.
+          Exportul JSON conține datele agregate disponibile.
+          Parola de administrator poate fi schimbată în fișierul <code>js/voturi.js</code>, variabila <code>ADMIN_PASSWORD</code>.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+</div>
+
+<script src="../js/main.js"></script>
+<script src="../js/voturi.js"></script>
+<script>
+// Update last update time
+document.getElementById('lastUpdate').textContent = new Date().toLocaleString('ro-RO');
+
+// Render top 3 after admin panel loads
+const origInitAdmin = window.initAdmin;
+document.addEventListener('DOMContentLoaded', () => {
+  // Override to also render top 3
+  const observer = new MutationObserver(() => {
+    if (document.getElementById('adminPanel').style.display !== 'none') {
+      renderTop3();
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.getElementById('adminPanel'), { attributes: true });
+});
+
+function renderTop3() {
+  const votes = JSON.parse(localStorage.getItem('votes_ma') || '{}');
+  const sorted = LUCRARI_MESAJE_ALBASTRE.map(l => ({...l, count: votes[l.id] || 0})).sort((a,b) => b.count - a.count);
+  const top3 = sorted.slice(0, 3);
+  const medals = ['🥇', '🥈', '🥉'];
+  const colors = [
+    'linear-gradient(135deg,#f6d365,#fda085)',
+    'linear-gradient(135deg,#a8b8c8,#8ea5b8)',
+    'linear-gradient(135deg,#cd7f32,#a06020)'
+  ];
+  document.getElementById('top3Grid').innerHTML = top3.map((l, i) => `
+    <div style="background:white; border-radius:var(--radius); padding:1.5rem; text-align:center; box-shadow:var(--shadow-sm); border:2px solid ${i===0?'#f6d365':i===1?'#a8b8c8':'#cd7f32'}">
+      <div style="font-size:2.5rem; margin-bottom:0.5rem">${medals[i]}</div>
+      <div style="width:48px;height:48px;border-radius:50%;background:${l.bg};display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 0.75rem">${l.icon}</div>
+      <h4 style="font-size:0.95rem; margin-bottom:0.25rem; color:var(--c-dark)">${l.titlu}</h4>
+      <p style="font-size:0.8rem; color:var(--t-soft); margin-bottom:0.75rem">${l.autor}</p>
+      <div style="font-size:1.6rem; font-weight:900; color:var(--c-dark); font-family:'Playfair Display',serif">${l.count}</div>
+      <div style="font-size:0.72rem; color:var(--t-soft); text-transform:uppercase; letter-spacing:0.1em">voturi</div>
+    </div>
+  `).join('');
+}
+</script>
+</body>
+</html>

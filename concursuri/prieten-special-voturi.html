@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Votează Povestea unui Prieten Special | Albastru pentru Solidaritate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="nav-placeholder" data-depth="1"></div>
+
+<section class="page-hero" style="background:linear-gradient(150deg,#001f3f 0%,#023e8a 35%,#0077b6 65%,#48cae4 100%)">
+  <div class="water-bg"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="../index.html">Acasă</a><span>/</span><a href="prieten-special-detalii.html">Prieten Special</a><span>/</span><span>Votează</span></div>
+    <span class="hero-label">❤ Votul Publicului</span>
+    <h1>Poveștile unui Prieten Special</h1>
+    <p>Votează povestea care ți-a plăcut cel mai mult! Fiecare poveste poate fi votată o singură dată.</p>
+  </div>
+  <div class="page-hero-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80Z" fill="white"/></svg></div>
+</section>
+
+<!-- Info banner -->
+<div style="background:linear-gradient(135deg,rgba(2,62,138,0.06),rgba(72,202,228,0.1)); border-bottom:1px solid rgba(72,202,228,0.2); padding:1.25rem 0">
+  <div class="container" style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; justify-content:space-between">
+    <div style="display:flex; align-items:center; gap:0.75rem">
+      <div style="width:10px; height:10px; border-radius:50%; background:#22c55e; animation:pulseBadge 1.5s infinite"></div>
+      <span style="font-weight:700; color:var(--c-dark)">Votarea este deschisă!</span>
+      <span style="font-size:0.85rem; color:var(--t-soft)">Până pe 10 Martie 2025</span>
+    </div>
+    <div style="display:flex; gap:1.5rem; align-items:center">
+      <span style="font-size:0.88rem; color:var(--t-soft)">🐾 8 povești în concurs</span>
+      <a href="prieten-special-detalii.html" class="btn btn-light btn-sm">Regulament →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Works grid -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">8 Povești Înscrise</span>
+      <h2 class="section-title">Alege povestea ta preferată!</h2>
+      <p class="section-desc">Citești titlul și autorul, votezi cu inima. Fiecare vot contribuie la premierea autorilor talentați.</p>
+    </div>
+    <div class="works-grid" id="worksGridPS">
+      <!-- Populated by voturi.js -->
+      <div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--t-soft)">
+        <div style="font-size:2rem; margin-bottom:1rem">🔄</div>
+        Se încarcă poveștile...
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tip: Read excerpt -->
+<section class="section bg-light" style="padding:70px 0">
+  <div class="container">
+    <div style="background:white; border-radius:var(--radius-lg); padding:3rem; max-width:800px; margin:0 auto; box-shadow:var(--shadow-sm); border:1px solid rgba(189,213,234,0.4)">
+      <div style="display:flex; gap:1.5rem; align-items:flex-start; flex-wrap:wrap">
+        <div style="font-size:3.5rem; flex-shrink:0">🐬</div>
+        <div>
+          <h3>Fragment din lucrarea câștigătoare a ediției precedente</h3>
+          <blockquote style="border-left:4px solid var(--c-mid); padding-left:1.5rem; margin:1.2rem 0; font-style:italic; color:var(--t-soft); font-family:'Playfair Display',serif; font-size:1.05rem; line-height:1.9">
+            „Mă numesc Ondine și sunt o lebădă albă care trăiește pe lacul din parcul orașului. Am văzut oamenii venind și plecând vreme de mulți ani. Am văzut apa schimbând culori pe care natura nu le cunoaște. Dar am văzut și copii care culeg gunoaiele de pe maluri cu mâinile lor mici și înmânușate, privind spre mine cu ochi curioși. Oare ei înțeleg că lacul acesta este casa mea?"
+          </blockquote>
+          <p style="font-size:0.85rem; color:var(--c-mid); font-weight:700">— Din lucrarea „Lebăda Ondine", autor anonim, ediția 2023</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding:60px 0">
+  <div class="container text-center">
+    <h3>Ai o poveste de spus?</h3>
+    <p class="mt-2 mb-4" style="max-width:560px; margin-left:auto; margin-right:auto">Înscrie-te în concursul „Povestea unui Prieten Special" și lasă natura să vorbească prin vocea ta!</p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+      <a href="prieten-special-detalii.html" class="btn btn-primary">Regulament concurs</a>
+      <a href="../contact.html" class="btn btn-light">Înscrie-te acum</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../js/main.js"></script>
+<script src="../js/voturi.js"></script>
+</body>
+</html>

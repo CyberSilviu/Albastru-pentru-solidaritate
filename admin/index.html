@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panou Admin — Albastru pentru Solidaritate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body { background:#f0f5fb; min-height:100vh; }
+    .admin-wrap { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    .admin-header { background:var(--grad-hero); border-radius:var(--radius-lg); padding:2.5rem; color:white; text-align:center; margin-bottom:2rem; }
+    .admin-header h1 { font-size:2rem; margin:0.5rem 0 0.25rem; color:white; }
+    .admin-header p { color:rgba(255,255,255,0.8); margin:0; }
+    .admin-section { background:white; border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow-sm); border:1px solid rgba(189,213,234,0.3); margin-bottom:1.5rem; }
+    .admin-section h2 { margin:0 0 1.5rem; font-size:1.2rem; color:var(--c-dark); border-bottom:2px solid var(--c-light); padding-bottom:0.75rem; }
+    .admin-btn-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .admin-link-card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem; padding:2rem 1.5rem; border-radius:var(--radius); background:var(--grad-light); border:2px solid rgba(189,213,234,0.4); text-decoration:none; color:var(--c-dark); transition:var(--trans); text-align:center; }
+    .admin-link-card:hover { background:var(--grad-primary); color:white; border-color:var(--c-accent); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+    .admin-link-card .card-icon { font-size:2.5rem; }
+    .admin-link-card .card-title { font-weight:700; font-size:1rem; }
+    .admin-link-card .card-sub { font-size:0.8rem; opacity:0.7; }
+    .anunt-form { display:flex; flex-direction:column; gap:1rem; }
+    .anunt-form input, .anunt-form textarea, .anunt-form select { padding:12px 14px; border:1.5px solid rgba(189,213,234,0.6); border-radius:var(--radius-sm); font-family:Lato,sans-serif; font-size:0.9rem; color:var(--c-dark); outline:none; transition:border-color 0.2s; }
+    .anunt-form input:focus, .anunt-form textarea:focus { border-color:var(--c-accent); }
+    .anunt-form textarea { min-height:120px; resize:vertical; }
+    .anunt-form label { font-weight:700; font-size:0.85rem; color:var(--c-dark); }
+    .anunt-list-admin { display:flex; flex-direction:column; gap:0.75rem; margin-top:1.25rem; }
+    .anunt-item-admin { display:flex; align-items:flex-start; gap:1rem; padding:1rem 1.25rem; background:#f8fbff; border-radius:var(--radius-sm); border:1px solid rgba(189,213,234,0.3); }
+    .anunt-item-admin .ai-body { flex:1; min-width:0; }
+    .anunt-item-admin .ai-title { font-weight:700; font-size:0.9rem; color:var(--c-dark); margin-bottom:0.2rem; }
+    .anunt-item-admin .ai-text { font-size:0.82rem; color:var(--t-soft); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .anunt-item-admin .ai-meta { font-size:0.75rem; color:var(--c-mid); font-weight:700; margin-top:0.2rem; }
+    .anunt-item-admin button { flex-shrink:0; background:rgba(220,50,50,0.1); border:1px solid rgba(220,50,50,0.2); color:#c0392b; padding:6px 12px; border-radius:var(--radius-sm); cursor:pointer; font-size:0.8rem; font-weight:700; transition:var(--trans); }
+    .anunt-item-admin button:hover { background:rgba(220,50,50,0.15); }
+    .badge-nou { background:var(--c-accent); color:white; font-size:0.65rem; font-weight:700; padding:2px 6px; border-radius:20px; vertical-align:middle; }
+    .lock-screen { display:flex; align-items:center; justify-content:center; min-height:100vh; background:var(--grad-hero); }
+    .lock-box { background:white; border-radius:var(--radius-lg); padding:3rem; max-width:420px; width:90%; box-shadow:var(--shadow-lg); text-align:center; }
+    .lock-box .lock-icon { font-size:3rem; margin-bottom:1rem; }
+    .lock-box h2 { margin:0 0 0.5rem; }
+    .lock-box p { color:var(--t-soft); font-size:0.9rem; margin-bottom:1.5rem; }
+    #lockError { color:#e74c3c; font-size:0.85rem; margin-top:0.5rem; display:none; }
+    .info-note { background:rgba(0,133,199,0.07); border-left:3px solid var(--c-accent); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:0.75rem 1rem; font-size:0.85rem; color:var(--t-soft); margin-bottom:1.5rem; }
+    .success-msg { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); color:#166534; border-radius:var(--radius-sm); padding:0.75rem 1rem; font-size:0.88rem; font-weight:600; display:none; margin-top:0.75rem; }
+    .error-msg { background:rgba(220,50,50,0.08); border:1px solid rgba(220,50,50,0.25); color:#c0392b; border-radius:var(--radius-sm); padding:0.75rem 1rem; font-size:0.88rem; font-weight:600; display:none; margin-top:0.75rem; }
+    .fs-status { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.85rem; font-weight:700; padding:6px 14px; border-radius:20px; }
+    .fs-status.disconnected { background:rgba(220,50,50,0.08); color:#c0392b; border:1px solid rgba(220,50,50,0.2); }
+    .fs-status.connected { background:rgba(34,197,94,0.1); color:#166534; border:1px solid rgba(34,197,94,0.3); }
+    .fs-status.saving { background:rgba(0,133,199,0.1); color:var(--c-accent); border:1px solid rgba(0,133,199,0.3); }
+    .fs-bar { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem; padding:1rem 1.25rem; background:#f8fbff; border-radius:var(--radius-sm); border:1px solid rgba(189,213,234,0.4); }
+  </style>
+</head>
+<body>
+
+<!-- Lock Screen -->
+<div id="lockScreen" class="lock-screen">
+  <div class="lock-box">
+    <div class="lock-icon">🔐</div>
+    <h2>Panou Admin</h2>
+    <p>Albastru pentru Solidaritate<br>Introduceți parola de administrare</p>
+    <form id="lockForm">
+      <input type="password" id="adminPwd" class="form-control" placeholder="Parolă admin" style="margin-bottom:0.75rem" autocomplete="current-password">
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Accesează Panoul →</button>
+      <div id="lockError">Parolă incorectă. Încearcă din nou.</div>
+    </form>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div id="adminPanel" style="display:none">
+  <div class="admin-wrap">
+
+    <div class="admin-header">
+      <div style="font-size:2.5rem">💙</div>
+      <h1>Panou Admin</h1>
+      <p>Albastru pentru Solidaritate — Ediția a XIII-a, 2026</p>
+    </div>
+
+    <!-- Quick links -->
+    <div class="admin-section">
+      <h2>🗳️ Administrare Voturi</h2>
+      <div class="admin-btn-grid">
+        <a href="voturi-mesaje-albastre.html" class="admin-link-card">
+          <div class="card-icon">🔵</div>
+          <div class="card-title">Voturi Mesaje Albastre</div>
+          <div class="card-sub">Clasament · Export JSON · Resetare</div>
+        </a>
+        <a href="voturi-prieten-special.html" class="admin-link-card">
+          <div class="card-icon">🐾</div>
+          <div class="card-title">Voturi Prieten Special</div>
+          <div class="card-sub">Clasament · Export JSON · Resetare</div>
+        </a>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.25rem">
+        <a href="../concursuri/mesaje-albastre-voturi.html" target="_blank" class="btn btn-light btn-sm">👁 Vezi pagina votare MA</a>
+        <a href="../concursuri/prieten-special-voturi.html" target="_blank" class="btn btn-light btn-sm">👁 Vezi pagina votare PS</a>
+        <a href="../anunturi.html" target="_blank" class="btn btn-light btn-sm">📢 Vezi pagina Anunțuri</a>
+      </div>
+    </div>
+
+    <!-- Announcements management -->
+    <div class="admin-section">
+      <h2>📢 Gestionare Anunțuri</h2>
+
+      <!-- File System Status Bar -->
+      <div class="fs-bar">
+        <div>
+          <div style="font-weight:700; font-size:0.9rem; color:var(--c-dark); margin-bottom:0.25rem">Fișier main.js</div>
+          <div id="fsStatus" class="fs-status disconnected">⚫ Neconectat</div>
+        </div>
+        <div style="flex:1; font-size:0.82rem; color:var(--t-soft)">
+          Conectați <code>js/main.js</code> o singură dată pe sesiune. Orice adăugare sau ștergere ulterioară actualizează fișierul <strong>automat</strong>.
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="connectMainJs()" id="btnConnect">📂 Conectează main.js</button>
+      </div>
+
+      <!-- Add announcement form -->
+      <div class="anunt-form">
+        <div>
+          <label for="aTitle">Titlu anunț *</label>
+          <input type="text" id="aTitle" placeholder="Ex: Votarea s-a deschis!">
+        </div>
+        <div>
+          <label for="aText">Textul complet al anunțului *</label>
+          <textarea id="aText" placeholder="Scrieți detaliile complete ale anunțului..."></textarea>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem">
+          <div>
+            <label for="aData">Data afișată</label>
+            <input type="text" id="aData" placeholder="Ex: 15 Martie 2026">
+          </div>
+          <div>
+            <label for="aNou">Marchează ca NOU</label>
+            <select id="aNou" style="padding:12px 14px; border:1.5px solid rgba(189,213,234,0.6); border-radius:var(--radius-sm); font-family:Lato,sans-serif; font-size:0.9rem; width:100%">
+              <option value="da">Da — afișează badge NOU</option>
+              <option value="nu">Nu</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-primary" onclick="addAnunt()" style="margin-top:0.25rem">➕ Adaugă anunțul</button>
+        </div>
+      </div>
+
+      <!-- Current announcements list -->
+      <div id="anuntSuccess" class="success-msg">✓ Anunțul a fost adăugat și main.js a fost actualizat!</div>
+      <div id="anuntError" class="error-msg">⚠ Anunțul a fost salvat local, dar main.js nu a putut fi actualizat. Reconectați fișierul.</div>
+
+      <div style="margin-top:2rem">
+        <strong style="font-size:0.95rem; display:block; margin-bottom:0.75rem">Anunțuri în ANUNTURI_ADMIN (din panoul admin)</strong>
+        <div id="anuntListAdmin" class="anunt-list-admin">
+          <p style="color:var(--t-soft); font-size:0.88rem">Nu există anunțuri adăugate din admin.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Site links -->
+    <div class="admin-section">
+      <h2>🔗 Navigare Rapidă Site</h2>
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap">
+        <a href="../index.html" target="_blank" class="btn btn-light btn-sm">🏠 Acasă</a>
+        <a href="../despre.html" target="_blank" class="btn btn-light btn-sm">ℹ️ Despre</a>
+        <a href="../galerie.html" target="_blank" class="btn btn-light btn-sm">🖼️ Galerie</a>
+        <a href="../contact.html" target="_blank" class="btn btn-light btn-sm">📬 Contact</a>
+        <a href="../participanti.html" target="_blank" class="btn btn-light btn-sm">👥 Participanți</a>
+        <a href="../resurse.html" target="_blank" class="btn btn-light btn-sm">📄 Resurse</a>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding:1.5rem; font-size:0.8rem; color:var(--t-soft)">
+      Panou administrare — Albastru pentru Solidaritate, Ediția a XIII-a 2026 | SGS Pașcani
+    </div>
+  </div>
+</div>
+
+<script>
+const ADMIN_PASSWORD = 'albastru2025';
+const STORAGE_KEY    = 'admin_anunturi';
+const FS_START       = '/* \u2500\u2500\u2500 ANUNTURI ADMIN \u2014 generate automat din panoul admin \u2500\u2500\u2500 */';
+const FS_END         = '/* \u2500\u2500\u2500 END ANUNTURI ADMIN \u2500\u2500\u2500 */';
+
+let fileHandle = null;   // File System Access API handle
+
+/* ── AUTH ── */
+document.getElementById('lockForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const pwd = document.getElementById('adminPwd').value;
+  if (pwd === ADMIN_PASSWORD) {
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    document.title = 'Admin Panel — Albastru pentru Solidaritate';
+    renderAdminAnunturi();
+    const today  = new Date();
+    const months = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+    document.getElementById('aData').value = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+  } else {
+    const err = document.getElementById('lockError');
+    err.style.display = 'block';
+    document.getElementById('adminPwd').value = '';
+    document.getElementById('adminPwd').focus();
+    setTimeout(() => err.style.display = 'none', 3000);
+  }
+});
+
+/* ── LOCALSTORAGE (fallback + working copy) ── */
+function getLocalAnunturi() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+}
+function saveLocalAnunturi(arr) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+}
+
+/* ── FILE SYSTEM ACCESS API ── */
+async function connectMainJs() {
+  if (!window.showOpenFilePicker) {
+    alert('File System Access API nu este suportat în acest browser.\nFolosiți Google Chrome sau Microsoft Edge.');
+    return;
+  }
+  try {
+    const [handle] = await window.showOpenFilePicker({
+      types: [{ description: 'JavaScript', accept: { 'application/javascript': ['.js'] } }],
+      multiple: false
+    });
+    fileHandle = handle;
+
+    // Read current ANUNTURI_ADMIN from file and sync to localStorage
+    const file    = await handle.getFile();
+    const content = await file.text();
+    const parsed  = parseAdminFromFile(content);
+    if (parsed !== null) {
+      saveLocalAnunturi(parsed);
+      renderAdminAnunturi();
+    }
+
+    setFsStatus('connected', '✅ ' + handle.name + ' conectat');
+    document.getElementById('btnConnect').textContent = '🔄 Reconectează main.js';
+  } catch (err) {
+    if (err.name !== 'AbortError') console.error(err);
+  }
+}
+
+/* Parse ANUNTURI_ADMIN array from file content */
+function parseAdminFromFile(content) {
+  const start = content.indexOf(FS_START);
+  const end   = content.indexOf(FS_END);
+  if (start === -1 || end === -1) return null;
+  const block  = content.slice(start + FS_START.length, end);
+  // Extract array literal between [ ... ]
+  const match  = block.match(/const\s+ANUNTURI_ADMIN\s*=\s*(\[[\s\S]*?\]);/);
+  if (!match) return [];
+  try { return JSON.parse(match[1]); } catch { return []; }
+}
+
+/* Write updated list back to main.js */
+async function saveToMainJs(list) {
+  if (!fileHandle) return false;
+  try {
+    const perm = await fileHandle.requestPermission({ mode: 'readwrite' });
+    if (perm !== 'granted') return false;
+
+    setFsStatus('saving', '💾 Se salvează...');
+
+    const file     = await fileHandle.getFile();
+    const content  = await file.text();
+    const startIdx = content.indexOf(FS_START);
+    const endIdx   = content.indexOf(FS_END);
+    if (startIdx === -1 || endIdx === -1) {
+      alert('Nu am găsit markerii ANUNTURI ADMIN în fișier!\nAsigurați-vă că ați selectat js/main.js corect.');
+      setFsStatus('disconnected', '⚫ Neconectat');
+      return false;
+    }
+
+    const newBlock = FS_START + '\nconst ANUNTURI_ADMIN = ' + JSON.stringify(list, null, 2) + ';\n' + FS_END;
+    const newContent = content.slice(0, startIdx) + newBlock + content.slice(endIdx + FS_END.length);
+
+    const writable = await fileHandle.createWritable();
+    await writable.write(newContent);
+    await writable.close();
+
+    setFsStatus('connected', '✅ ' + fileHandle.name + ' salvat');
+    return true;
+  } catch (err) {
+    console.error('saveToMainJs:', err);
+    setFsStatus('connected', '⚠ Eroare la salvare — ' + fileHandle.name);
+    return false;
+  }
+}
+
+function setFsStatus(state, text) {
+  const el = document.getElementById('fsStatus');
+  el.className = 'fs-status ' + state;
+  el.textContent = text;
+}
+
+/* ── RENDER ADMIN LIST ── */
+function renderAdminAnunturi() {
+  const list = getLocalAnunturi();
+  const container = document.getElementById('anuntListAdmin');
+  if (!list.length) {
+    container.innerHTML = '<p style="color:var(--t-soft); font-size:0.88rem">Nu există anunțuri adăugate din admin.</p>';
+    return;
+  }
+  container.innerHTML = list.map((a, i) => `
+    <div class="anunt-item-admin">
+      <div class="ai-body">
+        <div class="ai-title">${escH(a.titlu)} ${a.nou ? '<span class="badge-nou">NOU</span>' : ''}</div>
+        <div class="ai-text">${escH(a.text)}</div>
+        <div class="ai-meta">📅 ${escH(a.data)}</div>
+      </div>
+      <button onclick="deleteAnunt(${i})" title="Șterge anunțul">✕ Șterge</button>
+    </div>
+  `).join('');
+}
+
+function escH(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── ADD ANNOUNCEMENT ── */
+async function addAnunt() {
+  const titlu = document.getElementById('aTitle').value.trim();
+  const text  = document.getElementById('aText').value.trim();
+  const data  = document.getElementById('aData').value.trim() || new Date().toLocaleDateString('ro-RO');
+  const nou   = document.getElementById('aNou').value === 'da';
+  if (!titlu || !text) { alert('Completați titlul și textul anunțului!'); return; }
+
+  const list = getLocalAnunturi();
+  list.unshift({ id: Date.now(), titlu, text, data, nou });
+  saveLocalAnunturi(list);
+  renderAdminAnunturi();
+
+  // Clear form
+  document.getElementById('aTitle').value = '';
+  document.getElementById('aText').value  = '';
+
+  // Try to write to file
+  const saved = await saveToMainJs(list);
+  const sEl   = document.getElementById(saved ? 'anuntSuccess' : 'anuntError');
+  sEl.style.display = 'block';
+  setTimeout(() => sEl.style.display = 'none', 4000);
+}
+
+/* ── DELETE ANNOUNCEMENT ── */
+async function deleteAnunt(index) {
+  if (!confirm('Ștergi acest anunț?')) return;
+  const list = getLocalAnunturi();
+  list.splice(index, 1);
+  saveLocalAnunturi(list);
+  renderAdminAnunturi();
+  await saveToMainJs(list);
+}
+</script>
+</body>
+</html>
