@@ -103,16 +103,49 @@
     <div class="admin-section">
       <h2>📢 Gestionare Anunțuri</h2>
 
-      <!-- File System Status Bar -->
+      <!-- Status Bar -->
       <div class="fs-bar">
         <div>
-          <div style="font-weight:700; font-size:0.9rem; color:var(--c-dark); margin-bottom:0.25rem">Fișier main.js</div>
+          <div style="font-weight:700; font-size:0.9rem; color:var(--c-dark); margin-bottom:0.4rem">Mod publicare</div>
           <div id="fsStatus" class="fs-status disconnected">⚫ Neconectat</div>
         </div>
         <div style="flex:1; font-size:0.82rem; color:var(--t-soft)">
-          Conectați <code>js/main.js</code> o singură dată pe sesiune. Orice adăugare sau ștergere ulterioară actualizează fișierul <strong>automat</strong>.
+          Configurați <strong>GitHub</strong> pentru publicare automată pe Netlify, sau conectați <code>main.js</code> local (Chrome/Edge).
         </div>
-        <button class="btn btn-primary btn-sm" onclick="connectMainJs()" id="btnConnect">📂 Conectează main.js</button>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-primary btn-sm" onclick="toggleGhConfig()">⚙ GitHub</button>
+          <button class="btn btn-light btn-sm" onclick="connectMainJs()" id="btnConnect">📂 Local</button>
+        </div>
+      </div>
+
+      <!-- GitHub Config Panel (collapsible) -->
+      <div id="ghConfigPanel" style="display:none; background:#f8fbff; border-radius:var(--radius-sm); padding:1.25rem 1.5rem; margin-bottom:1.5rem; border:1px solid rgba(189,213,234,0.5)">
+        <strong style="font-size:0.9rem; display:block; margin-bottom:1rem; color:var(--c-dark)">⚙ Configurare GitHub API</strong>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:0.75rem">
+          <div>
+            <label class="anunt-form label" style="display:block; margin-bottom:4px">Repository (owner/repo)</label>
+            <input id="ghRepo" type="text" placeholder="ex: username/albastru-solidaritate" class="anunt-form input" style="width:100%; padding:10px 12px; border:1.5px solid rgba(189,213,234,0.6); border-radius:var(--radius-sm); font-family:Lato,sans-serif; font-size:0.88rem; box-sizing:border-box">
+          </div>
+          <div>
+            <label class="anunt-form label" style="display:block; margin-bottom:4px">Branch</label>
+            <input id="ghBranch" type="text" placeholder="main" class="anunt-form input" style="width:100%; padding:10px 12px; border:1.5px solid rgba(189,213,234,0.6); border-radius:var(--radius-sm); font-family:Lato,sans-serif; font-size:0.88rem; box-sizing:border-box">
+          </div>
+        </div>
+        <div style="margin-bottom:0.75rem">
+          <label class="anunt-form label" style="display:block; margin-bottom:4px">Personal Access Token <span style="font-weight:400; color:var(--t-soft)">(permisiune: Contents → Read &amp; Write)</span></label>
+          <input id="ghToken" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="width:100%; padding:10px 12px; border:1.5px solid rgba(189,213,234,0.6); border-radius:var(--radius-sm); font-family:Lato,sans-serif; font-size:0.88rem; box-sizing:border-box">
+          <div style="font-size:0.75rem; color:var(--t-soft); margin-top:4px">Tokenul e salvat doar în browserul tău (localStorage) — nu apare în codul public al site-ului.</div>
+        </div>
+        <div style="margin-bottom:1rem">
+          <label class="anunt-form label" style="display:block; margin-bottom:4px">Cale fișier în repo</label>
+          <input id="ghPath" type="text" placeholder="js/main.js" style="width:100%; padding:10px 12px; border:1.5px solid rgba(189,213,234,0.6); border-radius:var(--radius-sm); font-family:Lato,sans-serif; font-size:0.88rem; box-sizing:border-box">
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center">
+          <button class="btn btn-primary btn-sm" onclick="saveGhConfig()">💾 Salvează</button>
+          <button class="btn btn-light btn-sm" onclick="testGhConnection()">🔍 Testează conexiunea</button>
+          <button class="btn btn-light btn-sm" onclick="clearGhConfig()" style="margin-left:auto; color:#c0392b">✕ Șterge config</button>
+        </div>
+        <div id="ghTestResult" style="margin-top:0.75rem; font-size:0.85rem; font-weight:600; display:none"></div>
       </div>
 
       <!-- Add announcement form -->
@@ -144,8 +177,8 @@
       </div>
 
       <!-- Current announcements list -->
-      <div id="anuntSuccess" class="success-msg">✓ Anunțul a fost adăugat și main.js a fost actualizat!</div>
-      <div id="anuntError" class="error-msg">⚠ Anunțul a fost salvat local, dar main.js nu a putut fi actualizat. Reconectați fișierul.</div>
+      <div id="anuntSuccess" class="success-msg">✓ Publicat! Netlify va actualiza site-ul în ~60 secunde.</div>
+      <div id="anuntError" class="error-msg">⚠ Salvat local, dar publicarea a eșuat. Verificați configurarea GitHub sau reconectați fișierul local.</div>
 
       <div style="margin-top:2rem">
         <strong style="font-size:0.95rem; display:block; margin-bottom:0.75rem">Anunțuri în ANUNTURI_ADMIN (din panoul admin)</strong>
@@ -177,10 +210,11 @@
 <script>
 const ADMIN_PASSWORD = 'albastru2025';
 const STORAGE_KEY    = 'admin_anunturi';
+const GH_CONFIG_KEY  = 'admin_gh_config';
 const FS_START       = '/* \u2500\u2500\u2500 ANUNTURI ADMIN \u2014 generate automat din panoul admin \u2500\u2500\u2500 */';
 const FS_END         = '/* \u2500\u2500\u2500 END ANUNTURI ADMIN \u2500\u2500\u2500 */';
 
-let fileHandle = null;   // File System Access API handle
+let fileHandle = null;
 
 /* ── AUTH ── */
 document.getElementById('lockForm').addEventListener('submit', e => {
@@ -191,6 +225,8 @@ document.getElementById('lockForm').addEventListener('submit', e => {
     document.getElementById('adminPanel').style.display = 'block';
     document.title = 'Admin Panel — Albastru pentru Solidaritate';
     renderAdminAnunturi();
+    loadGhConfigToForm();
+    checkInitialStatus();
     const today  = new Date();
     const months = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
     document.getElementById('aData').value = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
@@ -203,15 +239,120 @@ document.getElementById('lockForm').addEventListener('submit', e => {
   }
 });
 
-/* ── LOCALSTORAGE (fallback + working copy) ── */
+/* ── LOCALSTORAGE (working copy) ── */
 function getLocalAnunturi() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
 }
-function saveLocalAnunturi(arr) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+function saveLocalAnunturi(arr) { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
+
+/* ── GITHUB CONFIG ── */
+function getGhConfig() {
+  try { return JSON.parse(localStorage.getItem(GH_CONFIG_KEY) || 'null'); } catch { return null; }
+}
+function loadGhConfigToForm() {
+  const cfg = getGhConfig();
+  if (!cfg) return;
+  document.getElementById('ghRepo').value   = cfg.repo   || '';
+  document.getElementById('ghBranch').value = cfg.branch || 'main';
+  document.getElementById('ghToken').value  = cfg.token  || '';
+  document.getElementById('ghPath').value   = cfg.path   || 'js/main.js';
+}
+function saveGhConfig() {
+  const repo   = document.getElementById('ghRepo').value.trim();
+  const branch = document.getElementById('ghBranch').value.trim() || 'main';
+  const token  = document.getElementById('ghToken').value.trim();
+  const path   = document.getElementById('ghPath').value.trim() || 'js/main.js';
+  if (!repo || !token) { alert('Introduceți repository-ul și tokenul!'); return; }
+  localStorage.setItem(GH_CONFIG_KEY, JSON.stringify({ repo, branch, token, path }));
+  setFsStatus('connected', '\u2705 GitHub: ' + repo);
+  document.getElementById('ghConfigPanel').style.display = 'none';
+}
+function clearGhConfig() {
+  if (!confirm('Ștergi configurarea GitHub?')) return;
+  localStorage.removeItem(GH_CONFIG_KEY);
+  setFsStatus('disconnected', '\u26ab Neconectat');
+  loadGhConfigToForm();
+}
+function toggleGhConfig() {
+  const p = document.getElementById('ghConfigPanel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+}
+function checkInitialStatus() {
+  const cfg = getGhConfig();
+  if (cfg) setFsStatus('connected', '\u2705 GitHub: ' + cfg.repo);
+}
+async function testGhConnection() {
+  const cfg = getGhConfig();
+  if (!cfg) { alert('Salvați mai întâi configurarea!'); return; }
+  const el = document.getElementById('ghTestResult');
+  el.style.display = 'block';
+  el.style.color = 'var(--c-accent)';
+  el.textContent = '\ud83d\udd04 Se testează...';
+  try {
+    const res = await fetch(
+      'https://api.github.com/repos/' + cfg.repo + '/contents/' + cfg.path + '?ref=' + cfg.branch,
+      { headers: { Authorization: 'Bearer ' + cfg.token, Accept: 'application/vnd.github+json' } }
+    );
+    if (res.ok) {
+      el.style.color = '#166534';
+      el.textContent = '\u2705 Conexiune reușită! Fișierul ' + cfg.path + ' găsit în ' + cfg.repo + ' (branch: ' + cfg.branch + ')';
+    } else {
+      const err = await res.json();
+      el.style.color = '#c0392b';
+      el.textContent = '\u26a0 Eroare ' + res.status + ': ' + (err.message || 'verificați tokenul și repository-ul');
+    }
+  } catch (e) {
+    el.style.color = '#c0392b';
+    el.textContent = '\u26a0 Eroare rețea: ' + e.message;
+  }
 }
 
-/* ── FILE SYSTEM ACCESS API ── */
+/* ── GITHUB API SAVE ── */
+async function saveToGitHub(list) {
+  const cfg = getGhConfig();
+  if (!cfg) return false;
+  try {
+    setFsStatus('saving', '\ud83d\udd04 Se publică pe GitHub...');
+    // 1. Get current SHA + content
+    const getRes = await fetch(
+      'https://api.github.com/repos/' + cfg.repo + '/contents/' + cfg.path + '?ref=' + cfg.branch,
+      { headers: { Authorization: 'Bearer ' + cfg.token, Accept: 'application/vnd.github+json' } }
+    );
+    if (!getRes.ok) throw new Error('GET ' + getRes.status + ' ' + getRes.statusText);
+    const { sha, content: b64 } = await getRes.json();
+    // 2. Decode UTF-8, replace block
+    const current  = decodeURIComponent(escape(atob(b64.replace(/\n/g, ''))));
+    const startIdx = current.indexOf(FS_START);
+    const endIdx   = current.indexOf(FS_END);
+    if (startIdx === -1 || endIdx === -1) throw new Error('Markeri ANUNTURI_ADMIN negăsiți în fișier');
+    const newBlock   = FS_START + '\nconst ANUNTURI_ADMIN = ' + JSON.stringify(list, null, 2) + ';\n' + FS_END;
+    const newContent = current.slice(0, startIdx) + newBlock + current.slice(endIdx + FS_END.length);
+    // 3. Commit
+    const putRes = await fetch(
+      'https://api.github.com/repos/' + cfg.repo + '/contents/' + cfg.path,
+      {
+        method: 'PUT',
+        headers: { Authorization: 'Bearer ' + cfg.token, 'Content-Type': 'application/json', Accept: 'application/vnd.github+json' },
+        body: JSON.stringify({
+          message: 'Actualizare anun\u021buri admin \u2014 ' + new Date().toLocaleString('ro-RO'),
+          content: btoa(unescape(encodeURIComponent(newContent))),
+          sha,
+          branch: cfg.branch
+        })
+      }
+    );
+    if (!putRes.ok) { const e = await putRes.json(); throw new Error('PUT ' + putRes.status + ': ' + (e.message || '')); }
+    setFsStatus('connected', '\u2705 Publicat \u2014 Netlify deploy în curs...');
+    setTimeout(() => setFsStatus('connected', '\u2705 GitHub: ' + cfg.repo), 6000);
+    return true;
+  } catch (err) {
+    console.error('saveToGitHub:', err);
+    setFsStatus('connected', '\u26a0 Eroare GitHub: ' + err.message);
+    return false;
+  }
+}
+
+/* ── FILE SYSTEM API (local dev) ── */
 async function connectMainJs() {
   if (!window.showOpenFilePicker) {
     alert('File System Access API nu este suportat în acest browser.\nFolosiți Google Chrome sau Microsoft Edge.');
@@ -223,77 +364,62 @@ async function connectMainJs() {
       multiple: false
     });
     fileHandle = handle;
-
-    // Read current ANUNTURI_ADMIN from file and sync to localStorage
     const file    = await handle.getFile();
     const content = await file.text();
     const parsed  = parseAdminFromFile(content);
-    if (parsed !== null) {
-      saveLocalAnunturi(parsed);
-      renderAdminAnunturi();
-    }
-
-    setFsStatus('connected', '✅ ' + handle.name + ' conectat');
-    document.getElementById('btnConnect').textContent = '🔄 Reconectează main.js';
+    if (parsed !== null) { saveLocalAnunturi(parsed); renderAdminAnunturi(); }
+    setFsStatus('connected', '\u2705 ' + handle.name + ' conectat (local)');
+    document.getElementById('btnConnect').textContent = '\ud83d\udd04 Reconectează';
   } catch (err) {
     if (err.name !== 'AbortError') console.error(err);
   }
 }
-
-/* Parse ANUNTURI_ADMIN array from file content */
 function parseAdminFromFile(content) {
   const start = content.indexOf(FS_START);
   const end   = content.indexOf(FS_END);
   if (start === -1 || end === -1) return null;
-  const block  = content.slice(start + FS_START.length, end);
-  // Extract array literal between [ ... ]
-  const match  = block.match(/const\s+ANUNTURI_ADMIN\s*=\s*(\[[\s\S]*?\]);/);
+  const block = content.slice(start + FS_START.length, end);
+  const match = block.match(/const\s+ANUNTURI_ADMIN\s*=\s*(\[[\s\S]*?\]);/);
   if (!match) return [];
   try { return JSON.parse(match[1]); } catch { return []; }
 }
-
-/* Write updated list back to main.js */
 async function saveToMainJs(list) {
   if (!fileHandle) return false;
   try {
     const perm = await fileHandle.requestPermission({ mode: 'readwrite' });
     if (perm !== 'granted') return false;
-
-    setFsStatus('saving', '💾 Se salvează...');
-
+    setFsStatus('saving', '\ud83d\udcbe Se salvează local...');
     const file     = await fileHandle.getFile();
     const content  = await file.text();
     const startIdx = content.indexOf(FS_START);
     const endIdx   = content.indexOf(FS_END);
     if (startIdx === -1 || endIdx === -1) {
-      alert('Nu am găsit markerii ANUNTURI ADMIN în fișier!\nAsigurați-vă că ați selectat js/main.js corect.');
-      setFsStatus('disconnected', '⚫ Neconectat');
+      alert('Nu am găsit markerii ANUNTURI ADMIN în fișier!');
+      setFsStatus('disconnected', '\u26ab Neconectat');
       return false;
     }
-
-    const newBlock = FS_START + '\nconst ANUNTURI_ADMIN = ' + JSON.stringify(list, null, 2) + ';\n' + FS_END;
+    const newBlock   = FS_START + '\nconst ANUNTURI_ADMIN = ' + JSON.stringify(list, null, 2) + ';\n' + FS_END;
     const newContent = content.slice(0, startIdx) + newBlock + content.slice(endIdx + FS_END.length);
-
-    const writable = await fileHandle.createWritable();
+    const writable   = await fileHandle.createWritable();
     await writable.write(newContent);
     await writable.close();
-
-    setFsStatus('connected', '✅ ' + fileHandle.name + ' salvat');
+    setFsStatus('connected', '\u2705 ' + fileHandle.name + ' salvat (local)');
     return true;
   } catch (err) {
     console.error('saveToMainJs:', err);
-    setFsStatus('connected', '⚠ Eroare la salvare — ' + fileHandle.name);
+    setFsStatus('connected', '\u26a0 Eroare la salvare');
     return false;
   }
 }
 
+/* ── STATUS ── */
 function setFsStatus(state, text) {
   const el = document.getElementById('fsStatus');
   el.className = 'fs-status ' + state;
   el.textContent = text;
 }
 
-/* ── RENDER ADMIN LIST ── */
+/* ── RENDER ── */
 function renderAdminAnunturi() {
   const list = getLocalAnunturi();
   const container = document.getElementById('anuntListAdmin');
@@ -312,43 +438,37 @@ function renderAdminAnunturi() {
     </div>
   `).join('');
 }
-
 function escH(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-/* ── ADD ANNOUNCEMENT ── */
+/* ── ADD / DELETE ── */
 async function addAnunt() {
   const titlu = document.getElementById('aTitle').value.trim();
   const text  = document.getElementById('aText').value.trim();
   const data  = document.getElementById('aData').value.trim() || new Date().toLocaleDateString('ro-RO');
   const nou   = document.getElementById('aNou').value === 'da';
   if (!titlu || !text) { alert('Completați titlul și textul anunțului!'); return; }
-
   const list = getLocalAnunturi();
   list.unshift({ id: Date.now(), titlu, text, data, nou });
   saveLocalAnunturi(list);
   renderAdminAnunturi();
-
-  // Clear form
   document.getElementById('aTitle').value = '';
   document.getElementById('aText').value  = '';
-
-  // Try to write to file
-  const saved = await saveToMainJs(list);
-  const sEl   = document.getElementById(saved ? 'anuntSuccess' : 'anuntError');
+  // GitHub > File System > localStorage
+  const saved = getGhConfig() ? await saveToGitHub(list) : await saveToMainJs(list);
+  const sEl = document.getElementById(saved ? 'anuntSuccess' : 'anuntError');
   sEl.style.display = 'block';
-  setTimeout(() => sEl.style.display = 'none', 4000);
+  setTimeout(() => sEl.style.display = 'none', 6000);
 }
-
-/* ── DELETE ANNOUNCEMENT ── */
 async function deleteAnunt(index) {
   if (!confirm('Ștergi acest anunț?')) return;
   const list = getLocalAnunturi();
   list.splice(index, 1);
   saveLocalAnunturi(list);
   renderAdminAnunturi();
-  await saveToMainJs(list);
+  if (getGhConfig()) await saveToGitHub(list);
+  else await saveToMainJs(list);
 }
 </script>
 </body>
