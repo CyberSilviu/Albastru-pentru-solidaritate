@@ -63,20 +63,20 @@ const ANUNT2_HTML = `
 /* ─── ANUNȚURI ─── */
 const ANUNTURI_DATA = [
   {
-    id: 5,
-    titlu: 'Lansăm Campania Națională de Conștientizare a Autismului „Albastru pentru Solidaritate" – ediția a XIII-a!',
-    rezumat: 'Prin acest proiect ne propunem să promovăm, în școli și în comunități, înțelegerea, empatia și incluziunea copiilor cu autism. Proiect inițiat de Școala Gimnazială Specială Pașcani, în parteneriat cu ISJ Iași, Asociația Zbor de fluturi, Fundația Ancora și alți parteneri.',
-    text: ANUNT1_HTML,
-    imagine: 'imagini/anunt1.jpg',
-    data: '3 Martie 2026',
-    nou: true
-  },
-  {
     id: 6,
     titlu: 'Ne împărtășiți povestea voastră? — Invitație pentru familiile copiilor cu autism',
     rezumat: '💙 Dragi părinți, frați și surori ai copiilor și tinerilor cu autism — vă invităm să ne împărtășiți câteva gânduri din trăirea voastră. Vocea voastră poate deschide inimi și poate ajuta alte familii aflate la început de drum.',
     text: ANUNT2_HTML,
     imagine: 'imagini/anunt2.jpg',
+    data: '4 Martie 2026',
+    nou: true
+  },
+  {
+    id: 5,
+    titlu: 'Lansăm Campania Națională de Conștientizare a Autismului „Albastru pentru Solidaritate" – ediția a XIII-a!',
+    rezumat: 'Prin acest proiect ne propunem să promovăm, în școli și în comunități, înțelegerea, empatia și incluziunea copiilor cu autism. Proiect inițiat de Școala Gimnazială Specială Pașcani, în parteneriat cu ISJ Iași, Asociația Zbor de fluturi, Fundația Ancora și alți parteneri.',
+    text: ANUNT1_HTML,
+    imagine: 'imagini/anunt1.jpg',
     data: '3 Martie 2026',
     nou: true
   },
