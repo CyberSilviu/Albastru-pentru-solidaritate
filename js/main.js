@@ -4,8 +4,82 @@
    Ediția a XIII-a, 2026 | Școala Gimnazială Specială Pașcani
    ============================================================ */
 
+/* ─── CONȚINUT COMPLET ANUNȚURI ─── */
+const ANUNT1_HTML = `
+<p>💙 Lansăm Campania Națională de Conștientizare a Autismului „Albastru pentru Solidaritate" – ediția a XIII-a! 💙</p>
+<p>Prin acest proiect ne propunem să promovăm, în școli și în comunități, înțelegerea, empatia și incluziunea copiilor cu autism.</p>
+<p><strong>În cadrul campaniei vom desfășura:</strong></p>
+<ul style="margin:0.5rem 0 1rem 1.5rem; line-height:1.9">
+  <li>🔹 activități de informare pentru elevi și cadre didactice</li>
+  <li>🔹 ateliere și discuții tematice</li>
+  <li>🔹 concursuri (eseu, creație literară, bannere cu mesaje de solidaritate)</li>
+  <li>🔹 momente dedicate susținerii incluziunii</li>
+</ul>
+<p>Autismul înseamnă diversitate, iar educația este primul pas spre o comunitate în care fiecare copil este sprijinit, valorizat și respectat.</p>
+<p><strong>Inițiator și coordonator al proiectului:</strong><br>Școala Gimnazială Specială Pașcani</p>
+<p><strong>Proiectul se desfășoară în parteneriat cu:</strong></p>
+<ul style="margin:0.5rem 0 1rem 1.5rem; line-height:1.9">
+  <li>📌 Inspectoratul Școlar Județean Iași</li>
+  <li>📌 Asociația Zbor de fluturi</li>
+  <li>📌 Acsinte Roxana Maria Cabinet de Psihologie</li>
+  <li>📌 Foundation Ancora</li>
+  <li>📌 Ancaar - filiala Iași</li>
+  <li>📌 Centrul Județean de Resurse și Asistență Educațională Iași</li>
+</ul>
+<p>Vă invităm să fiți alături de noi, să distribuiți mesajul și să susțineți o comunitate în care fiecare copil are locul său. 💙</p>
+<p style="color:var(--c-mid); font-size:0.88rem"><em>#AlbastruPentruSolidaritate #ConstientizareAutism #Incluziune #Educatie #Solidaritate</em></p>
+`.trim();
+
+const ANUNT2_HTML = `
+<p>💙 Dragi părinți, frați și surori ai copiilor și tinerilor cu autism,</p>
+<p>În cadrul Campaniei Naționale de Conștientizare a Autismului „Albastru pentru Solidaritate", ne dorim să aducem în lumină poveștile voastre — povești despre viața alături de o persoană cu autism, despre provocări și încercări, despre lacrimi și temeri, dar mai ales despre curaj, reușite, iubire și speranță.</p>
+<p>Fiecare membru al familiei trăiește această experiență în mod diferit. Părinții poartă responsabilitatea drumului și a deciziilor, iar frații și surorile duc, uneori în tăcere, propriile emoții, întrebări și frământări.</p>
+<p>Dacă simțiți că puteți și că este momentul potrivit, vă invităm să ne împărtășiți câteva gânduri din trăirea voastră.</p>
+<p><strong>Vocea voastră poate deschide inimi, poate schimba mentalități și poate ajuta o comunitate întreagă să înțeleagă mai bine ce înseamnă, cu adevărat, autismul.</strong></p>
+<p><strong>Puteți porni, dacă doriți, de la câteva întrebări precum:</strong></p>
+<p>🔹 <strong>Pentru părinți:</strong></p>
+<ul style="margin:0.5rem 0 1rem 1.5rem; line-height:1.9">
+  <li>Ce vârstă are copilul tău?</li>
+  <li>Cum ai trăit momentul aflării diagnosticului?</li>
+  <li>Care a fost cea mai mare teamă a ta?</li>
+  <li>Ce ți-ai fi dorit să auzi atunci?</li>
+  <li>Ce pași ai făcut mai departe?</li>
+  <li>Care sunt astăzi bucuriile și reușitele voastre?</li>
+</ul>
+<p>🔹 <strong>Pentru frați și surori:</strong></p>
+<ul style="margin:0.5rem 0 1rem 1.5rem; line-height:1.9">
+  <li>Cum ai înțeles și cum ai simțit diagnosticul?</li>
+  <li>Care au fost provocările tale?</li>
+  <li>Ce a fost cel mai greu pentru tine?</li>
+  <li>Ce ai învățat din această experiență?</li>
+  <li>Ce înseamnă pentru tine fratele sau sora ta astăzi?</li>
+</ul>
+<p>Mărturiile vor fi publicate pe site-ul proiectului pentru a informa și sensibiliza copiii și cadrele didactice din întreaga țară. Ele vor fi utilizate exclusiv în scop educativ, în cadrul campaniei, cu respectarea confidențialității și cu semnătura aleasă de fiecare participant (nume complet, prenume sau anonim).</p>
+<p>Dacă doriți să ne împărtășiți povestea voastră, ne puteți scrie sau trimite un mesaj audio la:<br>✉️ <a href="mailto:albastrupentrusolidaritate@yahoo.com" style="color:var(--c-accent)">albastrupentrusolidaritate@yahoo.com</a></p>
+<p>💙 Ne dorim ca vocile voastre să devină sprijin, încurajare și lumină pentru alte familii aflate la început de drum sau în momente dificile.<br>💙 Fiecare poveste contează. Fiecare voce poate aduce speranță.</p>
+<p>Cu recunoștință,<br><strong>Echipa campaniei „Albastru pentru Solidaritate" 💙</strong></p>
+`.trim();
+
 /* ─── ANUNȚURI ─── */
 const ANUNTURI_DATA = [
+  {
+    id: 5,
+    titlu: 'Lansăm Campania Națională de Conștientizare a Autismului „Albastru pentru Solidaritate" – ediția a XIII-a!',
+    rezumat: 'Prin acest proiect ne propunem să promovăm, în școli și în comunități, înțelegerea, empatia și incluziunea copiilor cu autism. Proiect inițiat de Școala Gimnazială Specială Pașcani, în parteneriat cu ISJ Iași, Asociația Zbor de fluturi, Fundația Ancora și alți parteneri.',
+    text: ANUNT1_HTML,
+    imagine: 'imagini/anunt1.jpg',
+    data: '3 Martie 2026',
+    nou: true
+  },
+  {
+    id: 6,
+    titlu: 'Ne împărtășiți povestea voastră? — Invitație pentru familiile copiilor cu autism',
+    rezumat: '💙 Dragi părinți, frați și surori ai copiilor și tinerilor cu autism — vă invităm să ne împărtășiți câteva gânduri din trăirea voastră. Vocea voastră poate deschide inimi și poate ajuta alte familii aflate la început de drum.',
+    text: ANUNT2_HTML,
+    imagine: 'imagini/anunt2.jpg',
+    data: '3 Martie 2026',
+    nou: true
+  },
   {
     id: 1,
     titlu: 'Deschisă înscrierea pentru Concursul Național „Mesaje Albastre" 2026',
@@ -397,20 +471,25 @@ function renderAnunturiPage() {
   const container = document.getElementById('anunturiList');
   if (!container) return;
   const all = getAllAnunturi();
+  const root = getRoot();
   if (!all.length) {
     container.innerHTML = '<p style="text-align:center;color:var(--t-soft);padding:3rem">Nu există anunțuri momentan.</p>';
     return;
   }
   container.innerHTML = all.map(a => {
-    const preview = a.text.length > 180 ? a.text.slice(0, 177) + '...' : a.text;
-    const hasFull = a.text.length > 180;
+    const previewText = a.rezumat || (a.text.length > 180 ? a.text.slice(0, 177) + '...' : a.text);
+    const hasFull = !!(a.rezumat || a.text.length > 180);
+    const imgHtml = a.imagine
+      ? `<img src="${root}${a.imagine}" alt="${a.titlu}" style="width:100%; border-radius:var(--radius-md); margin-bottom:1.25rem; display:block; max-height:480px; object-fit:cover">`
+      : '';
     return `
     <div class="anunt-card ${a.nou ? 'new' : ''} reveal" style="cursor:default">
       ${a.nou ? '<span class="anunt-nou-tag">● NOU</span>' : ''}
       <div class="anunt-date">${a.data}</div>
       <h3>${a.titlu}</h3>
-      <p class="anunt-preview">${preview}</p>
-      ${hasFull ? `<p class="anunt-full" style="display:none">${a.text}</p>
+      ${imgHtml}
+      <p class="anunt-preview">${previewText}</p>
+      ${hasFull ? `<div class="anunt-full" style="display:none">${a.text}</div>
       <button class="anunt-toggle btn btn-light btn-sm" onclick="toggleAnunt(this)" style="margin-top:0.75rem">Citește mai mult ↓</button>` : ''}
     </div>`;
   }).join('');
