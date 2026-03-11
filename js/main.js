@@ -80,34 +80,6 @@ const ANUNTURI_DATA = [
     data: '3 Martie 2026',
     nou: true
   },
-  {
-    id: 1,
-    titlu: 'Deschisă înscrierea pentru Concursul Național „Mesaje Albastre" 2026',
-    text: 'Concursul de bannere „Mesaje Albastre" este deschis! Realizați un banner cu mesaje de solidaritate și incluziune pentru persoanele cu TSA și trimiteți-l până pe 20 aprilie 2026. Detalii complete pe pagina concursului.',
-    data: '1 Martie 2026',
-    nou: true
-  },
-  {
-    id: 2,
-    titlu: 'Seminar Național „Autism: Diagnoză, Comunicare și Incluziune"',
-    text: 'Înregistrați-vă la seminarul național dedicat cadrelor didactice, specialiștilor și părinților copiilor cu TSA. Locul desfășurării: Școala Gimnazială Specială Pașcani + online. Link de înscriere disponibil pe site.',
-    data: '20 Februarie 2026',
-    nou: true
-  },
-  {
-    id: 3,
-    titlu: 'Marșul Solidarității — 2 Aprilie 2026, ora 10:30',
-    text: 'Pe 2 Aprilie 2026, de Ziua Internațională de Conștientizare a Autismului, vă invităm la Marșul Solidarității, Funda Umană și Flash Mob. Startul în Pașcani, de la Școala Gimnazială Specială, ora 10:30. Toți suntem bineveniți!',
-    data: '10 Februarie 2026',
-    nou: true
-  },
-  {
-    id: 4,
-    titlu: 'Peste 50 de școli partenere la ediția a XIII-a',
-    text: 'Suntem bucuroși să anunțăm că ediția 2026 a campaniei „Albastru pentru Solidaritate" reunește deja peste 50 de unități de învățământ din 15 județe. Vă mulțumim pentru implicare!',
-    data: '1 Februarie 2026',
-    nou: false
-  }
 ];
 
 /* ─── ANUNTURI ADMIN — generate automat din panoul admin ─── */
@@ -236,6 +208,7 @@ function buildFooter(root) {
   <div class="footer-bottom">
     <div class="container">
       <p>© 2026 Albastru pentru Solidaritate — Campania Națională de Conștientizare a Autismului, Ediția a XIII-a | <a href="${root}contact.html">Contact</a> | Școala Gimnazială Specială Pașcani</p>
+      <p style="margin-top:0.4rem; font-size:0.8rem; opacity:0.6">Site realizat de <a href="https://silviuandrei.com/" target="_blank" rel="noopener" style="color:inherit">Muraru Silviu Andrei</a></p>
     </div>
   </div>
 </footer>`;
