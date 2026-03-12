@@ -60,8 +60,34 @@ const ANUNT2_HTML = `
 <p>Cu recunoștință,<br><strong>Echipa campaniei „Albastru pentru Solidaritate" 💙</strong></p>
 `.trim();
 
+const ANUNT3_HTML = `
+<p>💙 Au început înscrierile pentru Campania Națională de Conștientizare a Autismului „Albastru pentru Solidaritate" – ediția a XIII-a! 💙</p>
+<p>Invităm unitățile de învățământ, cadrele didactice și specialiștii din domeniul educației să se alăture și în acest an demersului nostru de promovare a înțelegerii, empatiei și incluziunii copiilor cu autism în școli și comunități.</p>
+<p>📌 Înscrierea se realizează pe parcursul lunii martie, prin completarea Fișei de înscriere pentru participarea la campanie, disponibilă la următorul link:</p>
+<p>👉 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmvTz3xjGI8NxOd2WgjX933varXz47DBWgznzUVhkRsfGLJg/viewform?usp=publish-editor" target="_blank" rel="noopener" style="color:var(--c-accent)">Fișă de înscriere — link Google Forms</a></p>
+<p>Participarea la campanie presupune completarea fișei de înscriere, semnarea acordului de colaborare de către reprezentantul legal al instituției și transmiterea acestuia către organizatorii naționali.</p>
+<p>Ediția din 2025 a demonstrat amploarea și impactul acestui demers:</p>
+<ul style="margin:0.5rem 0 1rem 1.5rem; line-height:1.9">
+  <li>📊 61 de unități de învățământ implicate, din 15 județe și Republica Moldova</li>
+  <li>📊 peste 1.000 de cadre didactice implicate</li>
+  <li>📊 peste 11.000 de elevi participanți din întreaga țară</li>
+</ul>
+<p>📢 Vă invităm să vă înscrieți și să deveniți parte din această inițiativă națională!</p>
+<p>Împreună putem construi o școală și o societate în care fiecare copil este înțeles, sprijinit și valorizat. 💙</p>
+<p style="color:var(--c-mid); font-size:0.88rem"><em>#AlbastruPentruSolidaritate #ConstientizareAutism #Incluziune #Educatie #Solidaritate</em></p>
+`.trim();
+
 /* ─── ANUNȚURI ─── */
 const ANUNTURI_DATA = [
+  {
+    id: 7,
+    titlu: 'Au început înscrierile pentru Campania Națională „Albastru pentru Solidaritate" – ediția a XIII-a!',
+    rezumat: '💙 Invităm unitățile de învățământ, cadrele didactice și specialiștii din domeniul educației să se alăture și în acest an demersului nostru. Înscrierea se realizează pe parcursul lunii martie, prin completarea Fișei de înscriere.',
+    text: ANUNT3_HTML,
+    imagine: 'imagini/anunt3.jpeg',
+    data: '12 Martie 2026',
+    nou: true
+  },
   {
     id: 6,
     titlu: 'Ne împărtășiți povestea voastră? — Invitație pentru familiile copiilor cu autism',
@@ -194,6 +220,10 @@ function buildFooter(root) {
       <div class="footer-contact-item">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         <span>Prof. Nedelcu Gabriela: 0722 231 252</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        <span>Barbir Andrei: 0747 993 171</span>
       </div>
       <div class="footer-contact-item">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
