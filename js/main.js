@@ -483,7 +483,7 @@ function renderAnunturiPage() {
     const previewText = a.rezumat || (a.text.length > 180 ? a.text.slice(0, 177) + '...' : a.text);
     const hasFull = !!(a.rezumat || a.text.length > 180);
     const imgHtml = a.imagine
-      ? `<img src="${root}${a.imagine}" alt="${a.titlu}" style="width:100%; border-radius:var(--radius-md); margin-bottom:1.25rem; display:block; max-height:480px; object-fit:cover">`
+      ? `<img src="${root}${a.imagine}" alt="${a.titlu}" style="width:100%; border-radius:var(--radius-md); margin-bottom:1.25rem; display:block;">`
       : '';
     return `
     <div class="anunt-card ${a.nou ? 'new' : ''} reveal" style="cursor:default">
