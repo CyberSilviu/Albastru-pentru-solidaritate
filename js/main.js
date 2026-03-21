@@ -77,8 +77,41 @@ const ANUNT3_HTML = `
 <p style="color:var(--c-mid); font-size:0.88rem"><em>#AlbastruPentruSolidaritate #ConstientizareAutism #Incluziune #Educatie #Solidaritate</em></p>
 `.trim();
 
+const ANUNT4_HTML = `
+<p>📅 <strong>20 martie 2026</strong></p>
+<p>În cadrul campaniei „Albastru pentru Solidaritate" – ediția a XIII-a, a avut loc seminarul național <strong>„Autism: diagnoză, comunicare și incluziune"</strong>, reunind specialiști din domenii complementare pentru a aborda integrarea copiilor cu TSA în mediul educațional și social.</p>
+<p><strong>Agenda evenimentului:</strong></p>
+<ul style="margin:0.5rem 0 1.5rem 1.5rem; line-height:2">
+  <li>🔹 <strong>Oana Liliana Timofte</strong>, profesor consilier școlar – psiholog, CEOSP din cadrul CJRAE Iași<br>
+  <em>„Orientarea școlară și profesională a copiilor cu cerințe educaționale speciale"</em><br>
+  Prezentarea urmărește parcursul copilului cu CES de la depistare la intervenție și procesul de orientare școlară și profesională, evidențiind cadrul legislativ, pașii necesari, serviciile de sprijin, precum și date statistice și problematici ce decurg din creșterea numărului copiilor cu tulburări de spectru autist orientați în învățământ de masă și în învățământul special.</li>
+  <li>🔹 <strong>Inge Jose Smelik</strong>, președinta Fundației Ancora Salvării, terapeut ocupațional specializat în autism<br>
+  <em>„Comunicare alternativă și augmentativă"</em><br>
+  Intervenția evidențiază importanța comunicării eficiente în dezvoltarea persoanelor cu TSA, cu sau fără deficiență mintală asociată, prezentând metode, instrumente și exemple practice de utilizare în mediul familial și educațional.</li>
+  <li>🔹 <strong>Roxana Acsinte</strong>, psihopedagog specializat în autism (coordonator ABA), Roxana Acsinte Cabinet de Psihologie<br>
+  <em>„Pregătire pentru integrare în grădiniță și școală"</em><br>
+  Prezentarea se concentrează pe pregătirea copiilor pentru integrarea în mediul educațional, subliniind importanța terapiei în dezvoltarea autonomiei, a abilităților de bază și a colaborării dintre familie și specialiști.</li>
+  <li>🔹 <strong>Georgiana Șerban</strong>, președinte Asociația Zbor de fluturi, coordonator programe de terapie<br>
+  <em>„Stabilirea relațiilor de prietenie și interacțiune socială la clasă a copiilor cu TSA"</em><br>
+  Intervenția pune accent pe dezvoltarea abilităților sociale și facilitarea interacțiunii între copiii cu TSA și colegii lor, contribuind la crearea unui mediu educațional incluziv.</li>
+  <li>🔹 <strong>Carmen Ghercă</strong>, președinta ANCAAR – Filiala Iași<br>
+  <em>„Provocările autismului la vârsta adultă"</em><br>
+  Prezentarea abordează dificultățile și nevoile persoanelor cu autism la vârsta adultă, incluzând integrarea socio-profesională, autonomia și importanța sprijinului comunitar.</li>
+</ul>
+<p style="color:var(--c-mid); font-size:0.88rem"><em>#AlbastruPentruSolidaritate #ConstientizareAutism #Incluziune #Educatie #Solidaritate</em></p>
+`.trim();
+
 /* ─── ANUNȚURI ─── */
 const ANUNTURI_DATA = [
+  {
+    id: 8,
+    titlu: 'Seminar național: „Autism: diagnoză, comunicare și incluziune"',
+    rezumat: 'Seminarul a reunit specialiști în domeniul autismului: orientare școlară, comunicare alternativă, pregătire pentru integrare și provocările autismului la vârsta adultă. Agenda completă disponibilă în interior.',
+    text: ANUNT4_HTML,
+    imagine: '',
+    data: '20 Martie 2026',
+    nou: true
+  },
   {
     id: 7,
     titlu: 'Au început înscrierile pentru Campania Națională „Albastru pentru Solidaritate" – ediția a XIII-a!',
