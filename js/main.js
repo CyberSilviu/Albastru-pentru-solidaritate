@@ -105,7 +105,7 @@ const ANUNTURI_DATA = [
   {
     id: 8,
     titlu: 'Seminar național: „Autism: diagnoză, comunicare și incluziune"',
-    rezumat: 'Pe 31 martie 2026 va avea loc seminarul național cu specialiști în domeniul autismului: orientare școlară, comunicare alternativă, pregătire pentru integrare și provocările autismului la vârsta adultă. Agenda completă disponibilă în interior.',
+    rezumat: 'Agenda evenimentului',
     text: ANUNT4_HTML,
     imagine: '',
     data: '20 Martie 2026',
