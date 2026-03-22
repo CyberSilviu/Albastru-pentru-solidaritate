@@ -79,7 +79,6 @@ const ANUNT3_HTML = `
 
 const ANUNT4_HTML = `
 <p>📅 <strong>20 martie 2026</strong></p>
-<p>În cadrul campaniei „Albastru pentru Solidaritate" – ediția a XIII-a, va avea loc pe <strong>31 martie 2026</strong> seminarul național <strong>„Autism: diagnoză, comunicare și incluziune"</strong>, reunind specialiști din domenii complementare pentru a aborda integrarea copiilor cu TSA în mediul educațional și social.</p>
 <p><strong>Agenda evenimentului:</strong></p>
 <ul style="margin:0.5rem 0 1.5rem 1.5rem; line-height:2">
   <li>🔹 <strong>Oana Liliana Timofte</strong>, profesor consilier școlar – psiholog, CEOSP din cadrul CJRAE Iași<br>
@@ -106,6 +105,7 @@ const ANUNTURI_DATA = [
   {
     id: 8,
     titlu: 'Seminar național: „Autism: diagnoză, comunicare și incluziune"',
+    rezumat: 'Pe 31 martie 2026 va avea loc seminarul național cu specialiști în domeniul autismului: orientare școlară, comunicare alternativă, pregătire pentru integrare și provocările autismului la vârsta adultă. Agenda completă disponibilă în interior.',
     text: ANUNT4_HTML,
     imagine: '',
     data: '20 Martie 2026',
