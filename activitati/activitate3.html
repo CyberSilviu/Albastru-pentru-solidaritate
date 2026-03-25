@@ -125,10 +125,32 @@
       <span class="section-label">Informații de participare</span>
       <h2 class="section-title">Cum participi la seminar?</h2>
     </div>
+    <style>
+      .pdf-viewer-wrap { border:1px solid rgba(0,59,115,0.2); border-radius:8px; overflow:hidden; background:#f4f6f8; }
+      .pdf-viewer-wrap iframe { display:block; width:100%; height:680px; border:none; }
+      .pdf-mobile-note { display:none; }
+      @media(max-width:700px){
+        .pdf-viewer-wrap iframe { display:none; }
+        .pdf-mobile-note { display:block; background:#e8f4fd; border-radius:8px; padding:1.25rem; text-align:center; margin-top:0.5rem; }
+      }
+    </style>
     <div class="regulament-box">
       <h3>📋 Ghidul participantului — Seminar Național 2026</h3>
-      <div class="regulament-list">
-        <span>Revenim curând cu noi informații!</span>
+      <div style="margin-top:1.5rem">
+        <div style="display:flex; justify-content:flex-end; margin-bottom:0.75rem">
+          <a href="../documente/REGULAMENT ORGANIZARE_PARTICIPARE.pdf" download class="btn btn-primary btn-sm">📥 Descarcă PDF</a>
+        </div>
+        <div class="pdf-viewer-wrap">
+          <iframe src="../documente/REGULAMENT ORGANIZARE_PARTICIPARE.pdf#toolbar=1&view=FitH"
+                  title="Regulament Seminar Național 2026"></iframe>
+        </div>
+        <div class="pdf-mobile-note">
+          <p style="margin:0 0 0.75rem; font-weight:600; color:var(--c-dark)">Documentul nu poate fi afișat pe dispozitive mobile.</p>
+          <a href="../documente/REGULAMENT ORGANIZARE_PARTICIPARE.pdf" download class="btn btn-primary">📥 Descarcă Regulamentul (PDF)</a>
+        </div>
+        <p style="font-size:0.82rem; color:var(--t-soft); margin-top:0.5rem; text-align:center">
+          Dacă documentul nu se afișează, <a href="../documente/REGULAMENT ORGANIZARE_PARTICIPARE.pdf" target="_blank">deschide-l într-un tab nou</a> sau descarcă-l.
+        </p>
       </div>
     </div>
     <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:2.5rem">
