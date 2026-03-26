@@ -77,6 +77,18 @@ const ANUNT3_HTML = `
 <p style="color:var(--c-mid); font-size:0.88rem"><em>#AlbastruPentruSolidaritate #ConstientizareAutism #Incluziune #Educatie #Solidaritate</em></p>
 `.trim();
 
+const ANUNT5_HTML = `
+<p>📋 A fost publicat <strong>Regulamentul de Organizare și Participare</strong> la Campania Națională „Albastru pentru Solidaritate" – ediția a XIII-a, 2026.</p>
+<p>Documentul conține toate informațiile privind condițiile de participare, activitățile campaniei, termenele și criteriile de evaluare.</p>
+<p style="margin-top:1.25rem">
+  <a href="documente/REGULAMENT ORGANIZARE_PARTICIPARE.pdf" download
+     style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--c-accent); color:white; padding:0.65rem 1.25rem; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.95rem">
+    📥 Descarcă Regulamentul (PDF)
+  </a>
+</p>
+<p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #Regulament #Participare</em></p>
+`.trim();
+
 const ANUNT4_HTML = `
 <p>📅 <strong>20 martie 2026</strong></p>
 <p><strong>Agenda evenimentului:</strong></p>
@@ -102,6 +114,15 @@ const ANUNT4_HTML = `
 
 /* ─── ANUNȚURI ─── */
 const ANUNTURI_DATA = [
+  {
+    id: 9,
+    titlu: 'Regulamentul de Organizare și Participare — disponibil pentru descărcare',
+    rezumat: '📋 A fost publicat Regulamentul de Organizare și Participare la Campania Națională „Albastru pentru Solidaritate" – ediția a XIII-a, 2026. Descărcați documentul pentru toate detaliile de participare.',
+    text: ANUNT5_HTML,
+    imagine: '',
+    data: '26 Martie 2026',
+    nou: true
+  },
   {
     id: 8,
     titlu: 'Seminar național: „Autism: diagnoză, comunicare și incluziune"',
@@ -262,7 +283,7 @@ function buildFooter(root) {
         <span>Str. Gării nr. 157, Pașcani, jud. Iași</span>
       </div>
       <div class="footer-links mt-2">
-        <a href="${root}contact.html">Formular de contact</a>
+        <a href="${root}contact.html">Contact</a>
         <a href="${root}anunturi.html">Anunțuri</a>
       </div>
     </div>

@@ -23,8 +23,8 @@
 </section>
 
 <section class="section">
-  <div class="container">
-    <div style="display:grid; grid-template-columns:1fr 1.4fr; gap:4rem; align-items:start">
+  <div class="container" style="max-width:700px">
+    <div>
 
       <!-- Date contact -->
       <div class="reveal">
@@ -107,67 +107,6 @@
             <p style="color:var(--c-dark); font-weight:700; margin:0">Str. Gării nr. 157, Pașcani</p>
             <a href="https://maps.app.goo.gl/FNhYpaftieGyt9B49" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Deschide Google Maps</a>
           </div>
-        </div>
-      </div>
-
-      <!-- Formular -->
-      <div class="reveal">
-        <div style="background:white; border-radius:var(--radius-lg); padding:3rem; box-shadow:var(--shadow-md); border:1px solid rgba(189,213,234,0.3)">
-          <span class="section-label">Formular de Contact</span>
-          <h3 style="margin-top:1rem; margin-bottom:1.5rem">Trimite-ne un mesaj</h3>
-
-          <div id="formSuccess" class="form-success">
-            ✓ Mesajul a fost trimis cu succes! Vă vom contacta în curând.
-          </div>
-
-          <form id="contactForm">
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem">
-              <div class="form-group">
-                <label class="form-label" for="contactNume">Nume *</label>
-                <input type="text" id="contactNume" name="nume" class="form-control" placeholder="Numele tău" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="contactPrenume">Prenume *</label>
-                <input type="text" id="contactPrenume" name="prenume" class="form-control" placeholder="Prenumele tău" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="contactEmail">Email *</label>
-              <input type="email" id="contactEmail" name="email" class="form-control" placeholder="exemplu@email.ro" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="contactTelefon">Telefon</label>
-              <input type="tel" id="contactTelefon" name="telefon" class="form-control" placeholder="07XX XXX XXX">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="contactSubiect">Subiect *</label>
-              <select id="contactSubiect" name="subiect" class="form-control" required>
-                <option value="">Alege subiectul...</option>
-                <option>Informații despre campanie</option>
-                <option>Înscrierea la activități</option>
-                <option>Participare concursuri</option>
-                <option>Parteneriat instituțional</option>
-                <option>Seminar Național — înscriere</option>
-                <option>Presă și comunicare</option>
-                <option>Altele</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="contactInstitutie">Instituție / Organizație</label>
-              <input type="text" id="contactInstitutie" name="institutie" class="form-control" placeholder="Școala / ONG / Compania ta">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="contactMesaj">Mesaj *</label>
-              <textarea id="contactMesaj" name="mesaj" class="form-control" placeholder="Descrie pe scurt motivul contactului tău..." required></textarea>
-            </div>
-            <div class="form-group" style="display:flex; align-items:center; gap:0.75rem">
-              <input type="checkbox" id="gdpr" required style="width:18px;height:18px;accent-color:var(--c-accent)">
-              <label for="gdpr" style="font-size:0.84rem; color:var(--t-soft); cursor:pointer">Sunt de acord cu prelucrarea datelor personale conform politicii de confidențialitate.</label>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:15px">
-              Trimite mesajul →
-            </button>
-          </form>
         </div>
       </div>
 
