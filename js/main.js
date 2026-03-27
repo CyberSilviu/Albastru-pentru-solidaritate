@@ -392,19 +392,31 @@ function initHamburger() {
   const menu   = document.getElementById('navMenu');
   if (!toggle || !menu) return;
 
+  const openMenu = () => {
+    const navbar = document.getElementById('navbar');
+    const navH = navbar ? navbar.offsetHeight : 68;
+    menu.style.top = navH + 'px';
+    menu.style.height = (window.innerHeight - navH) + 'px';
+    menu.classList.add('open');
+    toggle.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMenu = () => {
+    menu.classList.remove('open');
+    toggle.classList.remove('open');
+    menu.style.top = '';
+    menu.style.height = '';
+    document.body.style.overflow = '';
+  };
+
   toggle.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    toggle.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+    menu.classList.contains('open') ? closeMenu() : openMenu();
   });
 
   // Close menu when clicking a real link (not dropdown toggles)
   menu.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
-    link.addEventListener('click', () => {
-      menu.classList.remove('open');
-      toggle.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+    link.addEventListener('click', () => closeMenu());
   });
 
   // Dropdown toggles on mobile — expand/collapse inline
