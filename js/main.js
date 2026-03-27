@@ -77,6 +77,12 @@ const ANUNT3_HTML = `
 <p style="color:var(--c-mid); font-size:0.88rem"><em>#AlbastruPentruSolidaritate #ConstientizareAutism #Incluziune #Educatie #Solidaritate</em></p>
 `.trim();
 
+const ANUNT6_HTML = `
+<p>📢 Vă informăm că înscrierile pentru seminarul <strong>„Autism: diagnoză, comunicare și incluziune"</strong> s-au încheiat, locurile disponibile fiind ocupate.</p>
+<p>În situația în care vor exista retrageri, vom reveni cu o informare privind redeschiderea înscrierilor.</p>
+<p>💙 Vă mulțumim pentru interesul acordat și pentru implicare!</p>
+`.trim();
+
 const ANUNT5_HTML = `
 <p>📋 A fost publicat <strong>Regulamentul de Organizare și Participare</strong> la Campania Națională „Albastru pentru Solidaritate" – ediția a XIII-a, 2026.</p>
 <p>Documentul conține toate informațiile privind condițiile de participare, activitățile campaniei, termenele și criteriile de evaluare.</p>
@@ -114,6 +120,15 @@ const ANUNT4_HTML = `
 
 /* ─── ANUNȚURI ─── */
 const ANUNTURI_DATA = [
+  {
+    id: 10,
+    titlu: 'Anunț privind înscrierile la seminar',
+    rezumat: '📢 Înscrierile pentru seminarul „Autism: diagnoză, comunicare și incluziune" s-au încheiat, locurile disponibile fiind ocupate.',
+    text: ANUNT6_HTML,
+    imagine: '',
+    data: '27 Martie 2026',
+    nou: true
+  },
   {
     id: 9,
     titlu: 'Regulamentul de Organizare și Participare — disponibil pentru descărcare',
