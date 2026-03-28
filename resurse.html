@@ -22,8 +22,49 @@
   <div class="page-hero-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80Z" fill="white"/></svg></div>
 </section>
 
-<!-- Mărturii audio -->
+<!-- Filme și cărți TSA -->
 <section class="section">
+  <div class="container" style="max-width:900px">
+    <div class="section-header">
+      <span class="section-label">Recomandări</span>
+      <h2 class="section-title">Filme și Cărți despre TSA</h2>
+    </div>
+    <p style="text-align:center; color:var(--t-soft); margin-bottom:2rem">Recomandări de filme și cărți despre tulburările de spectru autist, utile pentru elevi, părinți și cadre didactice.</p>
+
+    <style>
+      .pdf-films-viewer { border:1px solid rgba(0,59,115,0.2); border-radius:8px; overflow:hidden; background:#f4f6f8; }
+      .pdf-films-viewer iframe { display:block; width:100%; height:700px; border:none; }
+      .pdf-films-mobile { display:none; }
+      .pdf-films-desktop-btn { display:flex; justify-content:flex-end; margin-bottom:0.75rem; }
+      @media(max-width:700px){
+        .pdf-films-viewer iframe { display:none; }
+        .pdf-films-mobile { display:block; background:#e8f4fd; border-radius:8px; padding:1.25rem; text-align:center; margin-top:0.5rem; }
+        .pdf-films-desktop-btn { display:none; }
+      }
+    </style>
+
+    <div class="pdf-films-desktop-btn">
+      <a href="documente/Lista filme si carti TSA.pdf" download class="btn btn-primary btn-sm">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 8v2H5v2h14v-2h-6v-2H11z"/></svg>
+        Descarcă PDF
+      </a>
+    </div>
+    <div class="pdf-films-viewer">
+      <iframe src="documente/Lista filme si carti TSA.pdf#toolbar=1&view=FitH"
+              title="Listă filme și cărți despre TSA"></iframe>
+    </div>
+    <div class="pdf-films-mobile">
+      <p style="margin:0 0 0.75rem; font-weight:600; color:var(--c-dark)">Documentul nu poate fi afișat pe dispozitive mobile.</p>
+      <a href="documente/Lista filme si carti TSA.pdf" download class="btn btn-primary">📥 Descarcă lista (PDF)</a>
+    </div>
+    <p style="font-size:0.82rem; color:var(--t-soft); margin-top:0.5rem; text-align:center">
+      Dacă documentul nu se afișează, <a href="documente/Lista filme si carti TSA.pdf" target="_blank">deschide-l într-un tab nou</a> sau descarcă-l.
+    </p>
+  </div>
+</section>
+
+<!-- Mărturii audio -->
+<section class="section bg-light">
   <div class="container" style="max-width:900px">
     <div class="section-header">
       <span class="section-label">Voci din comunitate</span>
@@ -137,35 +178,6 @@
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- Filme și cărți TSA -->
-<section class="section">
-  <div class="container" style="max-width:900px">
-    <div class="section-header">
-      <span class="section-label">Recomandări</span>
-      <h2 class="section-title">Filme și Cărți despre TSA</h2>
-    </div>
-    <p style="text-align:center; color:var(--t-soft); margin-bottom:2rem">Recomandări de filme și cărți despre tulburările de spectru autist, utile pentru elevi, părinți și cadre didactice.</p>
-
-    <div class="resource-card reveal" style="border:1px solid rgba(189,213,234,0.4)">
-      <div class="resource-icon">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
-      </div>
-      <div class="resource-info">
-        <h4>Listă filme și cărți despre TSA</h4>
-        <p>Selecție de resurse culturale și educaționale recomandate în contextul campaniei.</p>
-        <div class="resource-meta">
-          <span class="resource-type">PDF</span>
-          <span class="tag tag-blue">Resurse</span>
-          <a href="documente/Lista filme si carti TSA.pdf" download class="btn btn-primary btn-sm">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 8v2H5v2h14v-2h-6v-2H11z"/></svg>
-            Descarcă
-          </a>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
