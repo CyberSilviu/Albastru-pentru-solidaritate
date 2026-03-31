@@ -149,6 +149,7 @@ const ANUNTURI_DATA = [
   {
     id: 12,
     titlu: '🔗 Link de conectare Zoom — Seminar Național, 31 Martie 2026',
+    rezumat: '🎓 Seminarul Național „Autism: Diagnoză, Comunicare și Incluziune" are loc astăzi, 31 Martie 2026. Participanții online se pot conecta prin Zoom folosind link-ul din anunț.',
     text: ANUNT8_HTML,
     data: '31 Martie 2026',
     nou: true
@@ -613,7 +614,7 @@ function renderAnunturiPage() {
       <div class="anunt-date">${a.data}</div>
       <h3>${a.titlu}</h3>
       ${imgHtml}
-      <p class="anunt-preview">${previewText}</p>
+      <div class="anunt-preview">${previewText}</div>
       ${hasFull ? `<div class="anunt-full" style="display:none">${a.text}</div>
       <button class="anunt-toggle btn btn-light btn-sm" onclick="toggleAnunt(this)" style="margin-top:0.75rem">Citește mai mult ↓</button>` : ''}
     </div>`;
