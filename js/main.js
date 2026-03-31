@@ -80,7 +80,7 @@ const ANUNT3_HTML = `
 const ANUNT7_HTML = `
 <p>Astăzi, <strong>31 martie 2026</strong>, ora <strong>15:00</strong>, debutează prima activitate majoră a Campaniei Naționale de Conștientizare a Autismului „<strong>Albastru pentru Solidaritate</strong>": <strong>seminarul național „Autism: diagnoză, comunicare și incluziune"</strong>, dedicat cadrelor didactice și specialiștilor din întreaga țară.</p>
 <p>Evenimentul va avea loc <strong>online</strong>, oferind participanților informații actualizate despre:</p>
-<ul style="margin:0.5rem 0 1.5rem 1.5rem; line-height:2">
+<ul style="margin:0.5rem 0 1.5rem 1.5rem; line-height:2; list-style-type:disc">
   <li>diagnoza tulburărilor din spectrul autist,</li>
   <li>comunicarea eficientă cu elevii cu autism,</li>
   <li>bune practici pentru incluziune în școală,</li>
