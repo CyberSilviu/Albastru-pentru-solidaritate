@@ -77,6 +77,18 @@ const ANUNT3_HTML = `
 <p style="color:var(--c-mid); font-size:0.88rem"><em>#AlbastruPentruSolidaritate #ConstientizareAutism #Incluziune #Educatie #Solidaritate</em></p>
 `.trim();
 
+const ANUNT8_HTML = `
+<p>🎓 Seminarul Național <strong>„Autism: Diagnoză, Comunicare și Incluziune"</strong> are loc astăzi, <strong>31 Martie 2026</strong>.</p>
+<p>Participanții online se pot conecta prin Zoom folosind link-ul de înregistrare de mai jos:</p>
+<p style="margin:1.5rem 0; text-align:center">
+  <a href="https://zoom.us/meeting/register/0vChgZmZTPmvtvdIwJUrkA" target="_blank" rel="noopener"
+     style="display:inline-flex; align-items:center; gap:0.6rem; background:var(--c-accent); color:white; padding:0.75rem 1.5rem; border-radius:8px; font-weight:700; text-decoration:none; font-size:1rem">
+    🔗 Înregistrare Zoom — Seminar Național
+  </a>
+</p>
+<p style="color:var(--c-mid); font-size:0.9rem">Vă așteptăm cu drag! 💙</p>
+`.trim();
+
 const ANUNT7_HTML = `
 <p>Astăzi, <strong>31 martie 2026</strong>, ora <strong>15:00</strong>, debutează prima activitate majoră a Campaniei Naționale de Conștientizare a Autismului „<strong>Albastru pentru Solidaritate</strong>": <strong>seminarul național „Autism: diagnoză, comunicare și incluziune"</strong>, dedicat cadrelor didactice și specialiștilor din întreaga țară.</p>
 <p>Evenimentul va avea loc <strong>online</strong>, oferind participanților informații actualizate despre:</p>
@@ -134,6 +146,13 @@ const ANUNT4_HTML = `
 
 /* ─── ANUNȚURI ─── */
 const ANUNTURI_DATA = [
+  {
+    id: 12,
+    titlu: '🔗 Link de conectare Zoom — Seminar Național, 31 Martie 2026',
+    text: ANUNT8_HTML,
+    data: '31 Martie 2026',
+    nou: true
+  },
   {
     id: 11,
     titlu: 'Astăzi începe Seminarul Național „Autism: diagnoză, comunicare și incluziune"!',
