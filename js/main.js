@@ -87,6 +87,7 @@ const ANUNT7_HTML = `
   <li>provocările tinerilor adulți cu autism și sprijinul necesar pentru autonomie și integrare.</li>
 </ul>
 <p>📧 <strong>Link-ul de conectare</strong> va fi transmis pe email în jurul orei 14:30 persoanelor înscrise la seminar.</p>
+<p>📧 <strong>Vă rugăm să verificați și folderul de spam.</strong></p>
 <p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #SeminarNational #ConstientizareAutism</em></p>
 `.trim();
 
