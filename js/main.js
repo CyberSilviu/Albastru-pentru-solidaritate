@@ -77,6 +77,19 @@ const ANUNT3_HTML = `
 <p style="color:var(--c-mid); font-size:0.88rem"><em>#AlbastruPentruSolidaritate #ConstientizareAutism #Incluziune #Educatie #Solidaritate</em></p>
 `.trim();
 
+const ANUNT7_HTML = `
+<p>Astăzi, <strong>31 martie 2026</strong>, ora <strong>15:00</strong>, debutează prima activitate majoră a Campaniei Naționale de Conștientizare a Autismului „<strong>Albastru pentru Solidaritate</strong>": <strong>seminarul național „Autism: diagnoză, comunicare și incluziune"</strong>, dedicat cadrelor didactice și specialiștilor din întreaga țară.</p>
+<p>Evenimentul va avea loc <strong>online</strong>, oferind participanților informații actualizate despre:</p>
+<ul style="margin:0.5rem 0 1.5rem 1.5rem; line-height:2">
+  <li>diagnoza tulburărilor din spectrul autist,</li>
+  <li>comunicarea eficientă cu elevii cu autism,</li>
+  <li>bune practici pentru incluziune în școală,</li>
+  <li>provocările tinerilor adulți cu autism și sprijinul necesar pentru autonomie și integrare.</li>
+</ul>
+<p>📧 <strong>Link-ul de conectare</strong> va fi transmis pe email în jurul orei 14:30 persoanelor înscrise la seminar.</p>
+<p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #SeminarNational #ConstientizareAutism</em></p>
+`.trim();
+
 const ANUNT6_HTML = `
 <p>📢 Vă informăm că înscrierile pentru seminarul <strong>„Autism: diagnoză, comunicare și incluziune"</strong> s-au încheiat, locurile disponibile fiind ocupate.</p>
 <p>În situația în care vor exista retrageri, vom reveni cu o informare privind redeschiderea înscrierilor.</p>
@@ -120,6 +133,15 @@ const ANUNT4_HTML = `
 
 /* ─── ANUNȚURI ─── */
 const ANUNTURI_DATA = [
+  {
+    id: 11,
+    titlu: 'Astăzi începe Seminarul Național „Autism: diagnoză, comunicare și incluziune"!',
+    rezumat: '🎓 Astăzi, 31 martie 2026, ora 15:00, debutează seminarul național online dedicat cadrelor didactice și specialiștilor. Link-ul de conectare va fi transmis pe email în jurul orei 14:30.',
+    text: ANUNT7_HTML,
+    imagine: '',
+    data: '31 Martie 2026',
+    nou: true
+  },
   {
     id: 10,
     titlu: 'Anunț privind înscrierile la seminar',
