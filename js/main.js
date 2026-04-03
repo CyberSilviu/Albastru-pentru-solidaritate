@@ -89,6 +89,20 @@ const ANUNT8_HTML = `
 <p style="color:var(--c-mid); font-size:0.9rem">Vă așteptăm cu drag! 💙</p>
 `.trim();
 
+const ANUNT9_HTML = `
+<p>💙 Pentru organizarea etapelor școlare ale concursurilor naționale din cadrul proiectului, respectiv:</p>
+<ul style="margin:0.5rem 0 1.25rem 1.5rem; line-height:2; list-style-type:disc">
+  <li><strong>„Mesaje albastre"</strong> – Concurs național de bannere</li>
+  <li><strong>„Povestea unui prieten special"</strong> – Concurs național de creație literară</li>
+</ul>
+<p>vă rugăm să consultați <strong>Regulamentul proiectului</strong>, disponibil pe site, la secțiunea <a href="anunturi.html" style="color:var(--c-accent)">Anunțuri</a>.</p>
+<p style="margin-top:1rem">🔗 <strong>Link-ul de înscriere pentru etapa județeană</strong> va fi publicat în data de <strong>19 aprilie 2026</strong>.</p>
+<p style="margin-top:0.75rem">📌 Având în vedere perioada Sărbătorilor Pascale, <strong>termenul de înscriere va fi prelungit până la data de 23 aprilie 2026</strong>.</p>
+<p style="margin-top:1rem">Vă încurajăm să sprijiniți participarea elevilor și să promovați aceste concursuri, ca oportunitate de exprimare creativă și de susținere a mesajului de empatie și incluziune.</p>
+<p style="margin-top:1rem">💙 Vă mulțumim pentru implicare și pentru contribuția la construirea unei comunități mai deschise și incluzive!</p>
+<p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #MesajeAlbastre #PovesteaUnuiPrietenSpecial #Concursuri</em></p>
+`.trim();
+
 const ANUNT7_HTML = `
 <p>Astăzi, <strong>31 martie 2026</strong>, ora <strong>15:00</strong>, debutează prima activitate majoră a Campaniei Naționale de Conștientizare a Autismului „<strong>Albastru pentru Solidaritate</strong>": <strong>seminarul național „Autism: diagnoză, comunicare și incluziune"</strong>, dedicat cadrelor didactice și specialiștilor din întreaga țară.</p>
 <p>Evenimentul va avea loc <strong>online</strong>, oferind participanților informații actualizate despre:</p>
@@ -100,7 +114,7 @@ const ANUNT7_HTML = `
 </ul>
 <p>📧 <strong>Link-ul de conectare</strong> va fi transmis pe email în jurul orei 14:30 persoanelor înscrise la seminar.</p>
 <p>📧 <strong>Vă rugăm să verificați și folderul de spam.</strong></p>
-<p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #SeminarNational #ConstientizareAutism</em></p>
+<p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlstruPentruSolidaritate #SeminarNational #ConstientizareAutism</em></p>
 `.trim();
 
 const ANUNT6_HTML = `
@@ -146,6 +160,15 @@ const ANUNT4_HTML = `
 
 /* ─── ANUNȚURI ─── */
 const ANUNTURI_DATA = [
+  {
+    id: 13,
+    titlu: 'Organizarea concursurilor naționale — „Mesaje albastre" și „Povestea unui prieten special"',
+    rezumat: '💙 Informații privind organizarea etapelor școlare ale concursurilor naționale. Link-ul de înscriere pentru etapa județeană va fi publicat pe 19 aprilie 2026. Termen prelungit până pe 23 aprilie 2026.',
+    text: ANUNT9_HTML,
+    imagine: '',
+    data: '3 Aprilie 2026',
+    nou: true
+  },
   {
     id: 12,
     titlu: '🔗 Link de conectare Zoom — Seminar Național, 31 Martie 2026',
