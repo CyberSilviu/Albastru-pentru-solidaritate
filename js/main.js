@@ -172,7 +172,29 @@ const ANUNT10_HTML = `
 <p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #MesajeAlbastre #ConcursNational</em></p>
 `.trim();
 
+const ANUNT11_HTML = `
+<p>💙 Se deschide înscrierea pentru concursul național de creație literară <strong>„𝗣𝗼𝘃𝗲𝘀𝘁𝗲𝗮 𝘂𝗻𝘂𝗶 𝗽𝗿𝗶𝗲𝘁𝗲𝗻 𝘀𝗽𝗲𝗰𝗶𝗮𝗹,"</strong>, din cadrul Campaniei Naționale de Conștientizare a Autismului <strong>„Albastru pentru Solidaritate”</strong>.</p>
+<p style="margin-top:1rem">
+  📌 <strong>Formular de înscriere:</strong>
+  <a href="https://forms.gle/qRbxh9WMsvxTVn7p6" target="_blank" rel="noopener" style="color:var(--c-accent); font-weight:700">https://forms.gle/qRbxh9WMsvxTVn7p6</a>
+</p>
+<p style="margin-top:0.75rem">🗓️ <strong>Termen limită:</strong> 23 aprilie 2026</p>
+<p style="margin-top:0.75rem">🔔Se va completa <strong>câte o fișă de înscriere</strong> pentru fiecare lucrare calificată.</p>
+<p style="margin-top:0.75rem">Înscrierea va fi realizată de <strong>profesorul coordonator</strong>, la nivelul unității de învățământ, cu respectarea instrucțiunilor din formular.</p>
+<p style="margin-top:1rem">💙 <strong>𝗜̂𝗻𝗰𝘂𝗿𝗮𝗷𝗮̆𝗺 𝗲𝗹𝗲𝘃𝗶𝗶 𝘀𝗮̆ 𝗶̂𝘀̦𝗶 𝗲𝘅𝗽𝗿𝗶𝗺𝗲 𝗰𝗿𝗲𝗮𝘁𝗶𝘃 𝗲𝗺𝗼𝘁̦𝗶𝗶𝗹𝗲 𝘀̦𝗶 𝗺𝗲𝘀𝗮𝗷𝘂𝗹 𝗱𝗲 𝗶𝗻𝗰𝗹𝘂𝘇𝗶𝘂𝗻𝗲 𝗽𝗿𝗶𝗻 𝗰𝘂𝘃𝗮̂𝗻𝘁!</strong></p>
+<p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #MesajeAlbastre #ConcursNational</em></p>
+`.trim();
+
 const ANUNTURI_DATA = [
+  {
+    id: 15,
+    titlu: '💙 Concurs național de creație literară „Povestea unui prieten special" – etapa județeană',
+    rezumat: '📌 S-a deschis perioada de înscriere pentru concursul național de creație literară „Povestea unui prieten special". Formular de înscriere disponibil. Termen limită: 23 aprilie 2026. Înscrierea se realizează de profesorul coordonator.',
+    text: ANUNT11_HTML,
+    imagine: '',
+    data: '19 Aprilie 2026',
+    nou: true
+  },
   {
     id: 14,
     titlu: '💙 Concurs național de bannere „Mesaje albastre" – etapa județeană',
@@ -665,6 +687,16 @@ function renderAnunturiPage() {
     </div>`;
   }).join('');
   setTimeout(initReveal, 100);
+  if (location.hash) {
+    setTimeout(() => {
+      const target = document.querySelector(location.hash);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const toggle = target.querySelector('.anunt-toggle');
+        if (toggle) toggle.click();
+      }
+    }, 150);
+  }
 }
 
 window.toggleAnunt = function(btn) {
