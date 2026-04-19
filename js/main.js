@@ -173,7 +173,7 @@ const ANUNT10_HTML = `
 `.trim();
 
 const ANUNT11_HTML = `
-<p>💙 Se deschide înscrierea pentru concursul național de creație literară <strong>„𝗣𝗼𝘃𝗲𝘀𝘁𝗲𝗮 𝘂𝗻𝘂𝗶 𝗽𝗿𝗶𝗲𝘁𝗲𝗻 𝘀𝗽𝗲𝗰𝗶𝗮𝗹,"</strong>, din cadrul Campaniei Naționale de Conștientizare a Autismului <strong>„Albastru pentru Solidaritate”</strong>.</p>
+<p>💙 Se deschide înscrierea pentru concursul național de creație literară <strong>„𝗣𝗼𝘃𝗲𝘀𝘁𝗲𝗮 𝘂𝗻𝘂𝗶 𝗽𝗿𝗶𝗲𝘁𝗲𝗻 𝘀𝗽𝗲𝗰𝗶𝗮𝗹"</strong>, din cadrul Campaniei Naționale de Conștientizare a Autismului <strong>„Albastru pentru Solidaritate”</strong>.</p>
 <p style="margin-top:1rem">
   📌 <strong>Formular de înscriere:</strong>
   <a href="https://forms.gle/qRbxh9WMsvxTVn7p6" target="_blank" rel="noopener" style="color:var(--c-accent); font-weight:700">https://forms.gle/qRbxh9WMsvxTVn7p6</a>
