@@ -159,7 +159,29 @@ const ANUNT4_HTML = `
 `.trim();
 
 /* ─── ANUNȚURI ─── */
+const ANUNT10_HTML = `
+<p>💙 S-a deschis perioada de înscriere pentru concursul național de bannere <strong>„Mesaje albastre"</strong>, organizat în cadrul Campaniei Naționale de Conștientizare a Autismului <strong>„Albastru pentru Solidaritate"</strong>.</p>
+<p style="margin-top:1rem">
+  📌 <strong>Formular de înscriere:</strong>
+  <a href="https://forms.gle/zmAumvmgMdSHZWJt9" target="_blank" rel="noopener" style="color:var(--c-accent); font-weight:700">https://forms.gle/zmAumvmgMdSHZWJt9</a>
+</p>
+<p style="margin-top:0.75rem">🗓️ <strong>Termen limită:</strong> 23 aprilie 2026</p>
+<p style="margin-top:0.75rem">🔔 Pentru fiecare banner calificat se va completa <strong>câte o fișă de înscriere</strong>.</p>
+<p style="margin-top:0.75rem">Înscrierea va fi realizată de <strong>profesorul coordonator</strong>, la nivelul unității de învățământ, cu respectarea instrucțiunilor din formular.</p>
+<p style="margin-top:1rem">💙 <strong>Vă încurajăm să susțineți incluziunea și să valorificați creativitatea elevilor!</strong></p>
+<p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #MesajeAlbastre #ConcursNational</em></p>
+`.trim();
+
 const ANUNTURI_DATA = [
+  {
+    id: 14,
+    titlu: '💙 Concurs național de bannere „Mesaje albastre" – etapa județeană',
+    rezumat: '📌 S-a deschis perioada de înscriere pentru concursul național de bannere „Mesaje albastre". Formular de înscriere disponibil. Termen limită: 23 aprilie 2026. Înscrierea se realizează de profesorul coordonator.',
+    text: ANUNT10_HTML,
+    imagine: '',
+    data: '19 Aprilie 2026',
+    nou: true
+  },
   {
     id: 13,
     titlu: 'Organizarea concursurilor naționale — „Mesaje albastre" și „Povestea unui prieten special"',
@@ -632,7 +654,7 @@ function renderAnunturiPage() {
       ? `<img src="${root}${a.imagine}" alt="${a.titlu}" style="width:100%; border-radius:var(--radius-md); margin-bottom:1.25rem; display:block;">`
       : '';
     return `
-    <div class="anunt-card ${a.nou ? 'new' : ''} reveal" style="cursor:default">
+    <div class="anunt-card ${a.nou ? 'new' : ''} reveal" id="anunt-${a.id}" style="cursor:default">
       ${a.nou ? '<span class="anunt-nou-tag">● NOU</span>' : ''}
       <div class="anunt-date">${a.data}</div>
       <h3>${a.titlu}</h3>
