@@ -185,7 +185,27 @@ const ANUNT11_HTML = `
 <p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #MesajeAlbastre #ConcursNational</em></p>
 `.trim();
 
+const ANUNT12_HTML = `
+<p>Anunț important privind completarea formularului de feedback (1 și 2 aprilie 2026)</p>
+<p style="margin-top:1rem">entru toți coordonatorii care transmit feedback-ul activităților desfășurate în zilele de 1 și 2 aprilie, vă rugăm să verificați setările de acces pentru documentele încărcate (tabele, rapoarte etc.).</p>
+<p style="margin-top:0.75rem">🔹 Dacă transmiteți link-uri de Google Docs / Google Drive, este necesar ca fișierele să fie setate pe „ Oricine are linkul poate edita” .</p>
+<p style="margin-top:0.75rem">🔹 În lipsa accesului, documentele nu pot fi verificate și prelucrate.</p>
+<p style="margin-top:0.75rem">🔹 Feedback-ul va fi considerat incomplet până la acordarea accesului necesar.</p>
+<p style="margin-top:1rem">⚠️ Fără aceste informații, nu se pot realiza raportările oficiale și nu se pot emite documentele de certificare (adeverințe, certificate de participare ).</p>
+<p style="margin-top:1rem">💙 Vă mulțumim pentru sprijin, responsabilitate și colaborare!</p>
+<p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #MesajeAlbastre #ConcursNational</em></p>
+`.trim();
+
 const ANUNTURI_DATA = [
+  {
+    id: 16,
+    titlu: '📢 Anunț important privind completarea formularului de feedback (1 și 2 aprilie 2026)',
+    rezumat: 'Pentru toți coordonatorii care transmit feedback-ul activităților desfășurate în zilele de 1 și 2 aprilie, vă rugăm să verificați setările de acces pentru documentele încărcate (tabele, rapoarte etc.). Detalii în anunț.',
+    text: ANUNT12_HTML,
+    imagine: '',
+    data: '22 aprilie 2026',
+    nou: true
+  },
   {
     id: 15,
     titlu: '💙 Concurs național de creație literară „Povestea unui prieten special" – etapa județeană',
