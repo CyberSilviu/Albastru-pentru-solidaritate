@@ -196,7 +196,24 @@ const ANUNT12_HTML = `
 <p style="color:var(--c-mid); font-size:0.88rem; margin-top:1rem"><em>#AlbastruPentruSolidaritate #MesajeAlbastre #ConcursNational</em></p>
 `.trim();
 
+const ANUNT13_HTML = `
+<p>📢 Anunț important privind înscrierea la concursuri</p>
+<p style="margin-top:1rem">Pentru toți participanții: atunci când completați formularul de înscriere și trimiteți materialele (banner, poezie etc.) printr-un link de Google Docs / Google Drive, vă rugăm să verificați setările de acces .</p>
+<p style="margin-top:0.75rem">🔹 Este necesar ca fișierul să fie setat pe „Oricine are linkul poate edita” , altfel nu vom putea deschide materialul trimis.</p>
+<p style="margin-top:0.75rem">🔹 În cazul în care accesul nu este permis, înscrierea va fi considerată incompletă.</p>
+<p style="margin-top:1rem">Vă mulțumim pentru înțelegere și colaborare! 😊</p>
+`.trim();
+
 const ANUNTURI_DATA = [
+  {
+    id: 17,
+    titlu: '📢 Anunț important privind înscrierea la concursuri',
+    rezumat: 'Pentru toți participanții: atunci când completați formularul de înscriere și trimiteți materialele (banner, poezie etc.) printr-un link de Google Docs / Google Drive, vă rugăm să verificați setările de acces .',
+    text: ANUNT13_HTML,
+    imagine: '',
+    data: '22 aprilie 2026',
+    nou: true
+  },
   {
     id: 16,
     titlu: '📢 Anunț important privind completarea formularului de feedback (1 și 2 aprilie 2026)',
