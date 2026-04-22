@@ -186,7 +186,7 @@ const ANUNT11_HTML = `
 `.trim();
 
 const ANUNT12_HTML = `
-<p style="margin-top:1rem">entru toți coordonatorii care transmit feedback-ul activităților desfășurate în zilele de 1 și 2 aprilie, vă rugăm să verificați setările de acces pentru documentele încărcate (tabele, rapoarte etc.).</p>
+<p style="margin-top:1rem">Pentru toți coordonatorii care transmit feedback-ul activităților desfășurate în zilele de 1 și 2 aprilie, vă rugăm să verificați setările de acces pentru documentele încărcate (tabele, rapoarte etc.).</p>
 <p style="margin-top:0.75rem">🔹 Dacă transmiteți link-uri de Google Docs / Google Drive, este necesar ca fișierele să fie setate pe „ Oricine are linkul poate edita” .</p>
 <p style="margin-top:0.75rem">🔹 În lipsa accesului, documentele nu pot fi verificate și prelucrate.</p>
 <p style="margin-top:0.75rem">🔹 Feedback-ul va fi considerat incomplet până la acordarea accesului necesar.</p>
