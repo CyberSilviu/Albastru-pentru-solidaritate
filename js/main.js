@@ -186,7 +186,6 @@ const ANUNT11_HTML = `
 `.trim();
 
 const ANUNT12_HTML = `
-<p>Anunț important privind completarea formularului de feedback (1 și 2 aprilie 2026)</p>
 <p style="margin-top:1rem">entru toți coordonatorii care transmit feedback-ul activităților desfășurate în zilele de 1 și 2 aprilie, vă rugăm să verificați setările de acces pentru documentele încărcate (tabele, rapoarte etc.).</p>
 <p style="margin-top:0.75rem">🔹 Dacă transmiteți link-uri de Google Docs / Google Drive, este necesar ca fișierele să fie setate pe „ Oricine are linkul poate edita” .</p>
 <p style="margin-top:0.75rem">🔹 În lipsa accesului, documentele nu pot fi verificate și prelucrate.</p>
@@ -197,7 +196,6 @@ const ANUNT12_HTML = `
 `.trim();
 
 const ANUNT13_HTML = `
-<p>📢 Anunț important privind înscrierea la concursuri</p>
 <p style="margin-top:1rem">Pentru toți participanții: atunci când completați formularul de înscriere și trimiteți materialele (banner, poezie etc.) printr-un link de Google Docs / Google Drive, vă rugăm să verificați setările de acces .</p>
 <p style="margin-top:0.75rem">🔹 Este necesar ca fișierul să fie setat pe „Oricine are linkul poate edita” , altfel nu vom putea deschide materialul trimis.</p>
 <p style="margin-top:0.75rem">🔹 În cazul în care accesul nu este permis, înscrierea va fi considerată incompletă.</p>
