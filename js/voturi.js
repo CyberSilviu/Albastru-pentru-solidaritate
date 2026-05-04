@@ -372,6 +372,121 @@ window.galNext = function(id) {
   if (ctr) ctr.textContent = (idx + 1) + ' / ' + imgs.length;
 };
 
+/* ─── LIGHTBOX ─── */
+let _lbImages = [];
+let _lbIdx    = 0;
+
+function initLightbox() {
+  if (document.getElementById('ps-lightbox')) return;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #ps-lightbox {
+      position:fixed;inset:0;z-index:9999;
+      background:rgba(0,12,30,0.96);
+      display:none;align-items:center;justify-content:center;
+      padding:56px 70px 48px;
+    }
+    #ps-lightbox img {
+      max-height:calc(100vh - 112px);max-width:calc(100vw - 148px);
+      object-fit:contain;border-radius:4px;
+      box-shadow:0 8px 60px rgba(0,0,0,0.7);
+      user-select:none;display:block;
+    }
+    .lb-btn {
+      position:absolute;background:rgba(255,255,255,0.1);
+      border:1px solid rgba(255,255,255,0.22);color:white;
+      border-radius:50%;width:52px;height:52px;font-size:2rem;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:background 0.2s;z-index:2;line-height:1;
+    }
+    .lb-btn:hover{background:rgba(0,133,199,0.65);border-color:rgba(0,133,199,0.8);}
+    #lb-close{top:14px;right:14px;font-size:1.4rem;width:44px;height:44px;}
+    #lb-prev {left:12px;top:50%;transform:translateY(-50%);}
+    #lb-next {right:12px;top:50%;transform:translateY(-50%);}
+    #lb-counter{
+      position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+      background:rgba(0,0,0,0.55);color:white;
+      font-size:0.8rem;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap;
+    }
+    #lb-caption{
+      position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+      color:rgba(255,255,255,0.72);font-size:0.78rem;text-align:center;white-space:nowrap;
+    }
+    #lb-bg{position:absolute;inset:0;cursor:pointer;}
+    @media(max-width:600px){
+      #ps-lightbox{padding:50px 8px 42px;}
+      #ps-lightbox img{max-width:100%;max-height:calc(100vh - 100px);}
+      #lb-prev{left:4px;}#lb-next{right:4px;}
+    }
+  `;
+  document.head.appendChild(style);
+
+  const lb = document.createElement('div');
+  lb.id = 'ps-lightbox';
+  lb.innerHTML = `
+    <div id="lb-bg"></div>
+    <button class="lb-btn" id="lb-close" aria-label="Închide">&#x2715;</button>
+    <button class="lb-btn" id="lb-prev"  aria-label="Pagina anterioară">&#8249;</button>
+    <img id="lb-img" src="" alt="Lucrare concurs">
+    <button class="lb-btn" id="lb-next"  aria-label="Pagina următoare">&#8250;</button>
+    <div id="lb-counter"></div>
+    <div id="lb-caption"></div>
+  `;
+  document.body.appendChild(lb);
+
+  document.getElementById('lb-close').addEventListener('click', lbClose);
+  document.getElementById('lb-bg').addEventListener('click',    lbClose);
+  document.getElementById('lb-prev').addEventListener('click',  lbPrev);
+  document.getElementById('lb-next').addEventListener('click',  lbNext);
+
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('ps-lightbox');
+    if (!lb || lb.style.display === 'none') return;
+    if (e.key === 'Escape')     { e.preventDefault(); lbClose(); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); lbPrev();  }
+    if (e.key === 'ArrowRight') { e.preventDefault(); lbNext();  }
+  });
+}
+
+function lbRefresh() {
+  document.getElementById('lb-img').src = _lbImages[_lbIdx];
+  const many = _lbImages.length > 1;
+  document.getElementById('lb-counter').textContent = many ? (_lbIdx + 1) + ' / ' + _lbImages.length : '';
+  document.getElementById('lb-prev').style.display  = many ? 'flex' : 'none';
+  document.getElementById('lb-next').style.display  = many ? 'flex' : 'none';
+  document.getElementById('ps-lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function lbClose() {
+  const lb = document.getElementById('ps-lightbox');
+  if (lb) lb.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function lbPrev() {
+  _lbIdx = (_lbIdx - 1 + _lbImages.length) % _lbImages.length;
+  lbRefresh();
+}
+
+function lbNext() {
+  _lbIdx = (_lbIdx + 1) % _lbImages.length;
+  lbRefresh();
+}
+
+window.lbOpenWork = function(workId, imgIdx) {
+  initLightbox();
+  const work = LUCRARI_PRIETEN_SPECIAL.find(l => l.id === workId);
+  if (!work) return;
+  const base = '../prietenul_special/' + work.folderPath + '/';
+  _lbImages  = work.images.map(img => base + encodeURIComponent(img));
+  _lbIdx     = imgIdx || 0;
+  const cap  = document.getElementById('lb-caption');
+  if (cap) cap.textContent = work.autor + ' · ' + work.clasa + ' · ' + work.scoala;
+  lbRefresh();
+};
+
 /* ─── RENDER MESAJE ALBASTRE (icon-based) ─── */
 function renderWorks(containerId, storageKey, lucrari) {
   const container = document.getElementById(containerId);
@@ -445,6 +560,7 @@ function renderWorksByClass(containerId, storageKey, lucrari) {
   }).join('');
 
   fbSubscribe(storageKey, votes => updateVoteDisplays(lucrari, votes));
+  initLightbox();
 
   setTimeout(() => {
     if (window.initReveal) initReveal();
@@ -459,20 +575,22 @@ function buildPSCard(l, voted, storageKey) {
   let artworkHtml;
   if (l.images.length === 1) {
     artworkHtml = `
-    <div class="work-artwork ps-gallery-single">
+    <div class="work-artwork ps-gallery-single" onclick="lbOpenWork('${l.id}',0)" title="Click pentru a mări">
       <img src="${base}${encodeURIComponent(l.images[0])}" alt="${l.autor}" loading="lazy">
+      <span class="ps-zoom-hint">🔍</span>
     </div>`;
   } else {
     const slides = l.images.map((img, i) =>
-      `<img src="${base}${encodeURIComponent(img)}" alt="${l.autor} — pagina ${i + 1}" loading="lazy" class="${i === 0 ? 'active' : ''}">`
+      `<img src="${base}${encodeURIComponent(img)}" alt="${l.autor} — pagina ${i + 1}" loading="lazy" class="${i === 0 ? 'active' : ''}" onclick="lbOpenWork('${l.id}',${i})">`
     ).join('');
     artworkHtml = `
     <div class="work-artwork ps-gallery" id="gal-${l.id}" data-idx="0">
       ${slides}
+      <span class="ps-zoom-hint">🔍</span>
       <div class="ps-gallery-nav">
-        <button onclick="galPrev('${l.id}')" aria-label="Pagina anterioară">&#8249;</button>
+        <button onclick="galPrev('${l.id}');event.stopPropagation()" aria-label="Pagina anterioară">&#8249;</button>
         <span class="ps-gallery-counter" id="gctr-${l.id}">1 / ${l.images.length}</span>
-        <button onclick="galNext('${l.id}')" aria-label="Pagina următoare">&#8250;</button>
+        <button onclick="galNext('${l.id}');event.stopPropagation()" aria-label="Pagina următoare">&#8250;</button>
       </div>
     </div>`;
   }
@@ -480,6 +598,7 @@ function buildPSCard(l, voted, storageKey) {
   return `
   <article class="work-card reveal" data-id="${l.id}">
     ${artworkHtml}
+    <button class="lb-open-btn" onclick="lbOpenWork('${l.id}',0)">🔍 Citește lucrarea</button>
     <div class="work-info">
       <h3 class="work-title">${l.autor}</h3>
       <p class="work-author" style="color:var(--c-mid);font-weight:700">${l.clasa}</p>
