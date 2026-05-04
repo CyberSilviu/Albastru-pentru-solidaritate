@@ -55,7 +55,7 @@
           <div>
             <span class="section-label">Panou Admin</span>
             <h1 style="font-size:2rem; margin-top:0.75rem">Voturi — Mesaje Albastre</h1>
-            <p>Clasament complet al lucrărilor, sortat după numărul de voturi primite</p>
+            <p>Clasamentul lucrărilor înscrise, sortat după voturile primite · <strong>23 lucrări · 2 categorii</strong></p>
           </div>
           <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem">
             <div style="background:var(--grad-btn); color:white; padding:1rem 1.5rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md)">
@@ -132,22 +132,31 @@ window._adminCallbacks = window._adminCallbacks || {};
 window._adminCallbacks['votes_ma'] = function(votes) { renderTop3(votes); };
 
 function renderTop3(votes) {
-  const sorted = LUCRARI_MESAJE_ALBASTRE
+  const sorted  = LUCRARI_MESAJE_ALBASTRE
     .map(l => ({ ...l, count: votes[l.id] || 0 }))
     .sort((a, b) => b.count - a.count);
   const top3    = sorted.slice(0, 3);
   const medals  = ['🥇', '🥈', '🥉'];
   const borders = ['#f6d365', '#a8b8c8', '#cd7f32'];
-  document.getElementById('top3Grid').innerHTML = top3.map((l, i) => `
+
+  document.getElementById('top3Grid').innerHTML = top3.map((l, i) => {
+    const thumbUrl  = (l.images && l.images.length > 0 && l.imgBase)
+      ? l.imgBase + encodeURIComponent(l.images[0])
+      : null;
+    const thumbHtml = thumbUrl
+      ? `<img src="${thumbUrl}" alt="${l.clasa}" style="width:72px;height:72px;object-fit:cover;border-radius:10px;margin:0 auto 0.75rem;display:block;box-shadow:0 2px 8px rgba(0,0,0,0.15);">`
+      : `<div style="width:72px;height:72px;border-radius:10px;background:${l.bg};display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 0.75rem">${l.icon}</div>`;
+    return `
     <div style="background:white; border-radius:var(--radius); padding:1.5rem; text-align:center; box-shadow:var(--shadow-sm); border:2px solid ${borders[i]}">
-      <div style="font-size:2.5rem; margin-bottom:0.5rem">${medals[i]}</div>
-      <div style="width:48px;height:48px;border-radius:50%;background:${l.bg};display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 0.75rem">${l.icon}</div>
-      <h4 style="font-size:0.95rem; margin-bottom:0.25rem; color:var(--c-dark)">${l.titlu}</h4>
-      <p style="font-size:0.8rem; color:var(--t-soft); margin-bottom:0.75rem">${l.autor}</p>
+      <div style="font-size:2.5rem; margin-bottom:0.75rem">${medals[i]}</div>
+      ${thumbHtml}
+      <h4 style="font-size:0.9rem; margin-bottom:0.2rem; color:var(--c-dark)">${l.clasa}</h4>
+      <p style="font-size:0.76rem; color:var(--c-mid); font-weight:700; margin-bottom:0.2rem">${l.nivelLabel}</p>
+      <p style="font-size:0.72rem; color:var(--t-soft); margin-bottom:0.75rem; line-height:1.4">${l.scoala}</p>
       <div style="font-size:1.6rem; font-weight:900; color:var(--c-dark); font-family:'Playfair Display',serif">${l.count}</div>
       <div style="font-size:0.72rem; color:var(--t-soft); text-transform:uppercase; letter-spacing:0.1em">voturi</div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 </script>
 </body>

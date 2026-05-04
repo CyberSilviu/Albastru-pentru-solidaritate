@@ -69,16 +69,238 @@ function saveVoted(key, arr) {
 
 /* ─── DATE LUCRĂRI — MESAJE ALBASTRE ─── */
 const LUCRARI_MESAJE_ALBASTRE = [
-  { id: 'ma01', titlu: 'Lumea mea albastră',          autor: 'Maria Ionescu',        clasa: 'Clasa VI A',   icon: '💙', bg: 'linear-gradient(135deg,#003B73,#0085C7)' },
-  { id: 'ma02', titlu: 'Acceptă-mă așa cum sunt',     autor: 'Alexandru Popa',       clasa: 'Clasa VII B',  icon: '🤝', bg: 'linear-gradient(135deg,#0085C7,#60A3D9)' },
-  { id: 'ma03', titlu: 'Altfel înseamnă special',      autor: 'Ioana Constantin',     clasa: 'Clasa V C',    icon: '⭐', bg: 'linear-gradient(135deg,#005fa3,#BDD5EA)' },
-  { id: 'ma04', titlu: 'Culoarea solidarității',       autor: 'Mihai Dumitrescu',     clasa: 'Clasa VIII A', icon: '🎨', bg: 'linear-gradient(135deg,#001f3f,#60A3D9)' },
-  { id: 'ma05', titlu: 'Prieteni în toate culorile',   autor: 'Ana-Maria Florescu',   clasa: 'Clasa VI B',   icon: '🌈', bg: 'linear-gradient(135deg,#003B73,#BDD5EA)' },
-  { id: 'ma06', titlu: 'Incluziunea ne face mai bogați', autor: 'Radu Moldovan',      clasa: 'Clasa VII A',  icon: '🌟', bg: 'linear-gradient(135deg,#002855,#0085C7)' },
-  { id: 'ma07', titlu: 'Înțelege, sprijină, include!', autor: 'Cristina Avram',       clasa: 'Clasa V B',    icon: '💫', bg: 'linear-gradient(135deg,#0085C7,#003B73)' },
-  { id: 'ma08', titlu: 'Autismul nu e o barieră',      autor: 'Tudor Gheorghiu',      clasa: 'Clasa VIII B', icon: '🚀', bg: 'linear-gradient(135deg,#60A3D9,#001f3f)' },
-  { id: 'ma09', titlu: 'Empatia construiește punți',   autor: 'Larisa Stoica',        clasa: 'Clasa VI C',   icon: '🌉', bg: 'linear-gradient(135deg,#003B73,#60A3D9)' },
-  { id: 'ma10', titlu: 'Vopsim lumea în albastru',     autor: 'Vlad Matei',           clasa: 'Clasa VII C',  icon: '🦋', bg: 'linear-gradient(135deg,#0085C7,#BDD5EA)' },
+  /* ── Gimnaziu ── */
+  {
+    id: 'ma-g-01', titlu: 'Centru de Resurse', autor: 'Centru de Resurse',
+    clasa: 'Centru de Resurse',
+    scoala: 'I.P. Gimnaziul Ștefan cel Mare, Nisporeni, Republica Moldova',
+    profesor: 'Bîtcă Veronica',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['Centru de resurse_I.P.Gimnaziul Ștefan cel Mare_Nisporeni_Republica Moldova_Bîtcă Veronica (1).jpg.jpeg'],
+    icon: '💙', bg: 'linear-gradient(135deg,#003B73,#0085C7)'
+  },
+  {
+    id: 'ma-g-02', titlu: 'Clasa a V-a A', autor: 'Clasa a V-a A',
+    clasa: 'Clasa a V-a A',
+    scoala: 'Școala Gimnazială Nr. 1, Hotar, Bihor',
+    profesor: 'Gherlea Lenuța',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['V A_ŞCOALA GIMNAZIALĂ NR. 1_HOTAR_BIHOR_GHERLEA LENUŢA.jpg.jpeg'],
+    icon: '🎨', bg: 'linear-gradient(135deg,#0085C7,#60A3D9)'
+  },
+  {
+    id: 'ma-g-03', titlu: 'Clasa a V-a A', autor: 'Clasa a V-a A',
+    clasa: 'Clasa a V-a A',
+    scoala: 'Școala Gimnazială Uda, Iași',
+    profesor: 'Pintilie Nicolae',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VA_Şcoala Gimnazialǎ Uda_Uda_Iași_Pintilie Nicolae.JPG.jpeg'],
+    icon: '🌊', bg: 'linear-gradient(135deg,#005fa3,#BDD5EA)'
+  },
+  {
+    id: 'ma-g-04', titlu: 'Clasa a V-a A', autor: 'Clasa a V-a A',
+    clasa: 'Clasa a V-a A',
+    scoala: 'Școala Gimnazială Elena Cuza, Iași',
+    profesor: 'Lazorec Maria',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VA_Școala Gimnazială Elena Cuza_Iași_Iași_Lazorec Maria.jpg.jpeg'],
+    icon: '⭐', bg: 'linear-gradient(135deg,#001f3f,#0085C7)'
+  },
+  {
+    id: 'ma-g-05', titlu: 'Clasa a VI-a C', autor: 'Clasa a VI-a C',
+    clasa: 'Clasa a VI-a C',
+    scoala: 'Școala Gimnazială Gh. I. Brătianu, Iași',
+    profesor: 'Iancu Gabriela',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VI C_ȘCOALA GIMNAZIALĂ GH. I. BRĂTIANU_IAȘI_IAȘI_IANCU GABRIELA.jpeg'],
+    icon: '🌟', bg: 'linear-gradient(135deg,#003B73,#60A3D9)'
+  },
+  {
+    id: 'ma-g-06', titlu: 'Clasa a VI-a C', autor: 'Clasa a VI-a C',
+    clasa: 'Clasa a VI-a C',
+    scoala: 'Școala Gimnazială Șerban Cioculescu, Găești, Dâmbovița',
+    profesor: 'Diaconu Stela',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VI C_ȘCOALA GIMNAZIALĂ ȘERBAN CIOCULESCU _GĂEȘTI_DÂMBOVIȚA_DIACONU STELA.jpg.jpeg'],
+    icon: '💫', bg: 'linear-gradient(135deg,#002855,#0085C7)'
+  },
+  {
+    id: 'ma-g-07', titlu: 'Clasa a VI-a A', autor: 'Clasa a VI-a A',
+    clasa: 'Clasa a VI-a A',
+    scoala: 'Școala Profesională Tătăruși, Iași',
+    profesor: 'Epure Oana',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VIA_Şcoala Profesionalǎ Tǎtǎruși_Tǎtǎruși_Iași_Epure Oana.JPG.jpeg'],
+    icon: '🤝', bg: 'linear-gradient(135deg,#0077b6,#48cae4)'
+  },
+  {
+    id: 'ma-g-08', titlu: 'Clasa a VII-a B', autor: 'Clasa a VII-a B',
+    clasa: 'Clasa a VII-a B',
+    scoala: 'Centrul Școlar pentru Educație Incluzivă Băbeni, Vâlcea',
+    profesor: 'Chiosilă Bianca',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VII B_CENTRUL ȘCOLAR PENTRU EDUCAȚIE INCLUZIVĂ BĂBENI_BĂBENI_VÂLCEA_CHIOSILĂ BIANCA.jpeg'],
+    icon: '🌈', bg: 'linear-gradient(135deg,#023e8a,#90e0ef)'
+  },
+  {
+    id: 'ma-g-09', titlu: 'Clasa a VII-a A', autor: 'Clasa a VII-a A',
+    clasa: 'Clasa a VII-a A',
+    scoala: 'Școala Gimnazială nr. 1, Costești',
+    profesor: 'Butnariu Geanina',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VIIA_Școala Gimnazială nr. 1_ Costești_Butnariu Geanina.jpg.jpeg'],
+    icon: '🦋', bg: 'linear-gradient(135deg,#003B73,#BDD5EA)'
+  },
+  {
+    id: 'ma-g-10', titlu: 'Clasa a VIII-a A', autor: 'Clasa a VIII-a A',
+    clasa: 'Clasa a VIII-a A',
+    scoala: 'Colegiul Național Alexandru Ioan Cuza, Galați',
+    profesor: 'Vlad Alina Ramona',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VIIIA_Colegiul National Alexandru Ioan Cuza_Galati_Galati_Vlad Alina Ramona.jpeg'],
+    icon: '🏆', bg: 'linear-gradient(135deg,#001f3f,#60A3D9)'
+  },
+  {
+    id: 'ma-g-11', titlu: 'Clasa a VIII-a', autor: 'Clasa a VIII-a',
+    clasa: 'Clasa a VIII-a',
+    scoala: 'Școala Gimnazială Nr. 1, Santa Mare, Botoșani',
+    profesor: 'Asavetei Lăcrămioara',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VIII_ȘcoalaGimnazialăNr.1_SantaMare_Botoșani_AsaveteiLăcrămioara.jpeg'],
+    icon: '🌸', bg: 'linear-gradient(135deg,#0085C7,#003B73)'
+  },
+  {
+    id: 'ma-g-12', titlu: 'Clasa a VII-a', autor: 'Clasa a VII-a',
+    clasa: 'Clasa a VII-a',
+    scoala: 'Școala Gimnazială Nr. 2, Tețchea, Bihor',
+    profesor: 'Ilea Luminița Maria',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VII_ŞCOALA GIMNAZIALĂ NR. 2_ŢEŢCHEA_BIHOR_ILEA LUMINIŢA MARIA.jpg.jpeg'],
+    icon: '🎯', bg: 'linear-gradient(135deg,#60A3D9,#001f3f)'
+  },
+  {
+    id: 'ma-g-13', titlu: 'Clasa a VII-a', autor: 'Clasa a VII-a',
+    clasa: 'Clasa a VII-a',
+    scoala: 'Școala Gimnazială Vânători, Hârtoape, Iași',
+    profesor: 'Chihaia Ramona Mihaela',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VII_Școala Gimnazială Vânători_Hârtoape_Iași_Chihaia Ramona Mihaela.JPG.jpeg'],
+    icon: '🌿', bg: 'linear-gradient(135deg,#005fa3,#60A3D9)'
+  },
+  {
+    id: 'ma-g-14', titlu: 'Clasa a VI-a', autor: 'Clasa a VI-a',
+    clasa: 'Clasa a VI-a',
+    scoala: 'Școala Gimnazială Sânmihaiu Român, Timiș',
+    profesor: 'Boba Cristina Elena & Iuga Gabriela Tania',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['VI_Școala Gimnazială Sânmihaiu Român_Sânmihaiu Român_Timiș_Boba Cristina Elena_Iuga Gabriela Tania.jpg.jpeg'],
+    icon: '🤗', bg: 'linear-gradient(135deg,#003B73,#0077b6)'
+  },
+  {
+    id: 'ma-g-15', titlu: 'Clasa a V-a', autor: 'Clasa a V-a',
+    clasa: 'Clasa a V-a',
+    scoala: 'Școala Gimnazială Specială Huedin, Cluj',
+    profesor: 'Abrudan Simona Rodica & Cernischi Adrian',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['V_Școala Gimnazială Specială Huedin_Cluj_Abrudan Simona Rodica_Cernischi Adrian .jpg.jpeg'],
+    icon: '🌺', bg: 'linear-gradient(135deg,#0085C7,#002855)'
+  },
+  {
+    id: 'ma-g-16', titlu: 'Clasa a VI-a A', autor: 'Clasa a VI-a A',
+    clasa: 'Clasa a VI-a A',
+    scoala: 'Centrul Școlar pentru Educație Incluzivă Târgu Neamț, Neamț',
+    profesor: 'Cucoș Maria',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['aVI a A _Centrul Școlar pentru Educație Incluzivă Târgu Neamț_Târgu Neamț_Neamț_Cucoș Maria.jfif.jpeg'],
+    icon: '💎', bg: 'linear-gradient(135deg,#001f3f,#48cae4)'
+  },
+  {
+    id: 'ma-g-17', titlu: 'Clasa a VI-a B', autor: 'Clasa a VI-a B',
+    clasa: 'Clasa a VI-a B',
+    scoala: 'Centrul Școlar pentru Educație Incluzivă Târgu Neamț, Neamț',
+    profesor: 'Popa Marcela',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['aVI a B _Centrul Școlar pentru Educație Incluzivă Târgu Neamț_Târgu Neamț_Neamț_Popa Marcela.jfif.jpeg'],
+    icon: '🦚', bg: 'linear-gradient(135deg,#023e8a,#BDD5EA)'
+  },
+  {
+    id: 'ma-g-18', titlu: 'Clasa a VII-a / a VIII-a', autor: 'Clasa a VII-a / a VIII-a',
+    clasa: 'Clasa a VII-a / a VIII-a',
+    scoala: 'Școala Gimnazială „Ștefan cel Mare și Sfânt" Dobrovăț, Iași',
+    profesor: 'Dulcianu Andreea Cornelia',
+    nivelGroup: 'G', nivelLabel: 'Gimnaziu',
+    imgBase: '../mesaje_albastre/gimnaziu/',
+    images: ['aVIIa_aVIII-a_Școala Gimnazială „Ștefan cel Mare și Sfânt" Dobrovăț_Dobrovăț_Iași_Dulcianu Andreea Cornelia.jpeg'],
+    icon: '🌙', bg: 'linear-gradient(135deg,#003B73,#023e8a)'
+  },
+  /* ── Liceu ── */
+  {
+    id: 'ma-l-01', titlu: 'Clasa a IX-a A', autor: 'Clasa a IX-a A',
+    clasa: 'Clasa a IX-a A',
+    scoala: 'Liceul Tehnologic Ion Ionescu de la Brad, Horia, Neamț',
+    profesor: 'Lenuța Enea',
+    nivelGroup: 'L', nivelLabel: 'Liceu',
+    imgBase: '../mesaje_albastre/liceu/',
+    images: ['IX A_LICEUL TEHNOLOGIC ION IONESCU DE LA BRAD_Horia_Neamț_Lenuța Enea.jpg.jpeg'],
+    icon: '🚀', bg: 'linear-gradient(135deg,#002855,#0085C7)'
+  },
+  {
+    id: 'ma-l-02', titlu: 'Clasa a X-a B', autor: 'Clasa a X-a B',
+    clasa: 'Clasa a X-a B',
+    scoala: 'Colegiul Național Alexandru Ioan Cuza, Galați',
+    profesor: 'Vlad Alina Ramona',
+    nivelGroup: 'L', nivelLabel: 'Liceu',
+    imgBase: '../mesaje_albastre/liceu/',
+    images: ['XB_Colegiul National Alexandru Ioan Cuza_Galati_Galati_Vlad Alina Ramona.jpeg'],
+    icon: '🏅', bg: 'linear-gradient(135deg,#001f3f,#0077b6)'
+  },
+  {
+    id: 'ma-l-03', titlu: 'Clasa a XI-a A', autor: 'Clasa a XI-a A',
+    clasa: 'Clasa a XI-a A',
+    scoala: 'Colegiul Tehnic „Ion Holban", Iași',
+    profesor: 'Hriscu Cristina',
+    nivelGroup: 'L', nivelLabel: 'Liceu',
+    imgBase: '../mesaje_albastre/liceu/',
+    images: ['XIA_Colegiul Tehnic „Ion Holban"_Iași_Iași_Hriscu Cristina.jpeg'],
+    icon: '✨', bg: 'linear-gradient(135deg,#0085C7,#023e8a)'
+  },
+  {
+    id: 'ma-l-04', titlu: 'Clasa a IX-a C', autor: 'Clasa a IX-a C',
+    clasa: 'Clasa a IX-a C',
+    scoala: 'Liceul Tehnologic de Transporturi și de Construcții, Iași',
+    profesor: 'Cernahuz Iuliana-Camelia',
+    nivelGroup: 'L', nivelLabel: 'Liceu',
+    imgBase: '../mesaje_albastre/liceu/',
+    images: ['a IX-a C_Liceul Tehnologic de Transporturi și de Construcții_Iași_Iași_Cernahuz Iuliana-Camelia.jpg.jpeg'],
+    icon: '🎭', bg: 'linear-gradient(135deg,#005fa3,#BDD5EA)'
+  },
+  {
+    id: 'ma-l-05', titlu: 'Clasa a XIII-a A', autor: 'Clasa a XIII-a A',
+    clasa: 'Clasa a XIII-a A',
+    scoala: 'Liceul Tehnologic de Transporturi și de Construcții, Iași',
+    profesor: 'Dogaru Camelia-Sorina',
+    nivelGroup: 'L', nivelLabel: 'Liceu',
+    imgBase: '../mesaje_albastre/liceu/',
+    images: ['a XIII-a A_Liceul Tehnologic de Transporturi și de Construcții_Iași_Iași_Dogaru Camelia-Sorina.jpeg'],
+    icon: '🌠', bg: 'linear-gradient(135deg,#60A3D9,#002855)'
+  },
 ];
 
 /* ─── DATE LUCRĂRI — POVESTEA UNUI PRIETEN SPECIAL ─── */
@@ -477,111 +699,45 @@ function lbNext() {
 
 window.lbOpenWork = function(workId, imgIdx) {
   initLightbox();
-  const work = LUCRARI_PRIETEN_SPECIAL.find(l => l.id === workId);
+  const work = LUCRARI_PRIETEN_SPECIAL.find(l => l.id === workId)
+            || LUCRARI_MESAJE_ALBASTRE.find(l => l.id === workId);
   if (!work) return;
-  const base = '../prietenul_special/' + work.folderPath + '/';
+  const base = work.imgBase || ('../prietenul_special/' + work.folderPath + '/');
   _lbImages  = work.images.map(img => base + encodeURIComponent(img));
   _lbIdx     = imgIdx || 0;
   const cap  = document.getElementById('lb-caption');
-  if (cap) cap.textContent = work.autor + ' · ' + work.clasa + ' · ' + work.scoala;
+  if (cap) {
+    const parts = [];
+    if (work.autor) parts.push(work.autor);
+    if (work.clasa && work.clasa !== work.autor) parts.push(work.clasa);
+    if (work.scoala) parts.push(work.scoala);
+    if (work.profesor) parts.push('prof. ' + work.profesor);
+    cap.textContent = parts.join(' · ');
+  }
   lbRefresh();
 };
 
-/* ─── RENDER MESAJE ALBASTRE (icon-based) ─── */
-function renderWorks(containerId, storageKey, lucrari) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-
-  const voted = getVoted(storageKey);
-
-  /* Randare imediată cu 0 voturi (Firebase va actualiza în câteva ms) */
-  container.innerHTML = lucrari.map(l => {
-    const hasVoted = voted.includes(l.id);
-    return `
-    <article class="work-card reveal" data-id="${l.id}">
-      <div class="work-artwork" style="background:${l.bg}">
-        <span style="font-size:3.5rem;text-shadow:0 2px 12px rgba(0,0,0,0.3)">${l.icon}</span>
-        <span class="work-artwork-label">${l.clasa}</span>
-      </div>
-      <div class="work-info">
-        <h3 class="work-title">${l.titlu}</h3>
-        <p class="work-author">✍️ ${l.autor}</p>
-        <p class="work-class">${l.clasa}</p>
-      </div>
-      <div class="work-footer">
-        <span class="vote-count" id="count-${l.id}">${HEART_SVG} — voturi</span>
-        <button class="vote-btn${hasVoted ? ' voted' : ''}" id="vote-${l.id}"
-          ${hasVoted ? 'disabled' : ''}
-          onclick="doVote('${storageKey}','${l.id}')">
-          ${hasVoted ? '✓ Ai votat' : '❤ Votează'}
-        </button>
-      </div>
-    </article>`;
-  }).join('');
-
-  /* Actualizare în timp real din Firebase */
-  fbSubscribe(storageKey, votes => updateVoteDisplays(lucrari, votes));
-
-  setTimeout(() => {
-    if (window.initReveal) initReveal();
-    else initRevealObs();
-  }, 50);
-}
-
-/* ─── RENDER PRIETEN SPECIAL (imagini + secțiuni pe clase) ─── */
-function renderWorksByClass(containerId, storageKey, lucrari) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-
-  const voted    = getVoted(storageKey);
-  const groupOrder = [];
-  const groups   = {};
-
-  lucrari.forEach(l => {
-    if (!groups[l.clasaGroup]) {
-      groups[l.clasaGroup] = { label: l.clasaLabel, works: [] };
-      groupOrder.push(l.clasaGroup);
-    }
-    groups[l.clasaGroup].works.push(l);
-  });
-
-  container.innerHTML = groupOrder.map(key => {
-    const { label, works } = groups[key];
-    return `
-    <div class="ps-class-section">
-      <div class="ps-class-header">
-        <span class="ps-class-badge">${label}</span>
-        <span class="ps-class-count">${works.length} ${works.length === 1 ? 'lucrare' : 'lucrări'}</span>
-      </div>
-      <div class="works-grid">
-        ${works.map(l => buildPSCard(l, voted, storageKey)).join('')}
-      </div>
-    </div>`;
-  }).join('');
-
-  fbSubscribe(storageKey, votes => updateVoteDisplays(lucrari, votes));
-  initLightbox();
-
-  setTimeout(() => {
-    if (window.initReveal) initReveal();
-    else initRevealObs();
-  }, 50);
-}
-
-function buildPSCard(l, voted, storageKey) {
+/* ─── BUILD CARD (imagine + galerie + vot) ─── */
+function buildImageCard(l, voted, storageKey) {
   const hasVoted = voted.includes(l.id);
-  const base     = '../prietenul_special/' + l.folderPath + '/';
+  const base     = l.imgBase || ('../prietenul_special/' + l.folderPath + '/');
+  const label    = l.autor || l.clasa;
 
   let artworkHtml;
-  if (l.images.length === 1) {
+  if (!l.images || l.images.length === 0) {
+    artworkHtml = `
+    <div class="work-artwork" style="background:${l.bg};display:flex;align-items:center;justify-content:center">
+      <span style="font-size:3.5rem;text-shadow:0 2px 12px rgba(0,0,0,0.3)">${l.icon}</span>
+    </div>`;
+  } else if (l.images.length === 1) {
     artworkHtml = `
     <div class="work-artwork ps-gallery-single" onclick="lbOpenWork('${l.id}',0)" title="Click pentru a mări">
-      <img src="${base}${encodeURIComponent(l.images[0])}" alt="${l.autor}" loading="lazy">
+      <img src="${base}${encodeURIComponent(l.images[0])}" alt="${label}" loading="lazy">
       <span class="ps-zoom-hint">🔍</span>
     </div>`;
   } else {
     const slides = l.images.map((img, i) =>
-      `<img src="${base}${encodeURIComponent(img)}" alt="${l.autor} — pagina ${i + 1}" loading="lazy" class="${i === 0 ? 'active' : ''}" onclick="lbOpenWork('${l.id}',${i})">`
+      `<img src="${base}${encodeURIComponent(img)}" alt="${label} — pagina ${i + 1}" loading="lazy" class="${i === 0 ? 'active' : ''}" onclick="lbOpenWork('${l.id}',${i})">`
     ).join('');
     artworkHtml = `
     <div class="work-artwork ps-gallery" id="gal-${l.id}" data-idx="0">
@@ -595,14 +751,31 @@ function buildPSCard(l, voted, storageKey) {
     </div>`;
   }
 
+  const lbBtn = (l.images && l.images.length > 0)
+    ? `<button class="lb-open-btn" onclick="lbOpenWork('${l.id}',0)">🔍 Citește lucrarea</button>`
+    : '';
+
+  const clasaLine = (l.clasa && l.clasa !== l.autor)
+    ? `<p class="work-author" style="color:var(--c-mid);font-weight:700">${l.clasa}</p>`
+    : '';
+
+  const scoalaLine = l.scoala
+    ? `<p style="font-size:0.76rem;color:var(--t-soft);margin-top:3px;line-height:1.45">${l.scoala}</p>`
+    : '';
+
+  const profLine = l.profesor
+    ? `<p style="font-size:0.72rem;color:var(--c-mid);margin-top:2px">prof. ${l.profesor}</p>`
+    : '';
+
   return `
   <article class="work-card reveal" data-id="${l.id}">
     ${artworkHtml}
-    <button class="lb-open-btn" onclick="lbOpenWork('${l.id}',0)">🔍 Citește lucrarea</button>
+    ${lbBtn}
     <div class="work-info">
-      <h3 class="work-title">${l.autor}</h3>
-      <p class="work-author" style="color:var(--c-mid);font-weight:700">${l.clasa}</p>
-      <p style="font-size:0.76rem;color:var(--t-soft);margin-top:3px;line-height:1.45">${l.scoala}</p>
+      <h3 class="work-title">${label}</h3>
+      ${clasaLine}
+      ${scoalaLine}
+      ${profLine}
     </div>
     <div class="work-footer">
       <span class="vote-count" id="count-${l.id}">${HEART_SVG} — voturi</span>
@@ -613,6 +786,47 @@ function buildPSCard(l, voted, storageKey) {
       </button>
     </div>
   </article>`;
+}
+
+/* ─── RENDER GRUPAT (imagini + secțiuni) ─── */
+function renderWorksByGroup(containerId, storageKey, lucrari, groupField, labelField) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const voted      = getVoted(storageKey);
+  const groupOrder = [];
+  const groups     = {};
+
+  lucrari.forEach(l => {
+    const key = l[groupField];
+    if (!groups[key]) {
+      groups[key] = { label: l[labelField], works: [] };
+      groupOrder.push(key);
+    }
+    groups[key].works.push(l);
+  });
+
+  container.innerHTML = groupOrder.map(key => {
+    const { label, works } = groups[key];
+    return `
+    <div class="ps-class-section">
+      <div class="ps-class-header">
+        <span class="ps-class-badge">${label}</span>
+        <span class="ps-class-count">${works.length} ${works.length === 1 ? 'lucrare' : 'lucrări'}</span>
+      </div>
+      <div class="works-grid">
+        ${works.map(l => buildImageCard(l, voted, storageKey)).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  fbSubscribe(storageKey, votes => updateVoteDisplays(lucrari, votes));
+  initLightbox();
+
+  setTimeout(() => {
+    if (window.initReveal) initReveal();
+    else initRevealObs();
+  }, 50);
 }
 
 /* ─── ADMIN PANEL ─── */
@@ -642,8 +856,9 @@ function initAdmin(storageKey, lucrari) {
     tableBody.innerHTML = sorted.map((l, i) => {
       const rank = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
       const pct  = total > 0 ? Math.round((l.count / total) * 100) : 0;
-      const thumbHtml = (l.images && l.images.length > 0 && l.folderPath)
-        ? `<img src="../prietenul_special/${l.folderPath}/${encodeURIComponent(l.images[0])}" alt="" style="width:40px;height:40px;object-fit:cover;border-radius:8px;flex-shrink:0;">`
+      const imgBase   = l.imgBase || (l.folderPath ? `../prietenul_special/${l.folderPath}/` : null);
+      const thumbHtml = (l.images && l.images.length > 0 && imgBase)
+        ? `<img src="${imgBase}${encodeURIComponent(l.images[0])}" alt="" style="width:40px;height:40px;object-fit:cover;border-radius:8px;flex-shrink:0;">`
         : `<div style="width:40px;height:40px;border-radius:8px;background:${l.bg};display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">${l.icon}</div>`;
       return `
       <tr>
@@ -756,7 +971,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (storageKey === 'votes_ma') initAdmin('votes_ma', LUCRARI_MESAJE_ALBASTRE);
     if (storageKey === 'votes_ps') initAdmin('votes_ps', LUCRARI_PRIETEN_SPECIAL);
   } else {
-    renderWorks('worksGridMA', 'votes_ma', LUCRARI_MESAJE_ALBASTRE);
-    renderWorksByClass('psClassesContainer', 'votes_ps', LUCRARI_PRIETEN_SPECIAL);
+    renderWorksByGroup('maGroupsContainer', 'votes_ma', LUCRARI_MESAJE_ALBASTRE, 'nivelGroup', 'nivelLabel');
+    renderWorksByGroup('psClassesContainer', 'votes_ps', LUCRARI_PRIETEN_SPECIAL, 'clasaGroup', 'clasaLabel');
   }
 });

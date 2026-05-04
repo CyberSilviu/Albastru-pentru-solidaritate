@@ -7,6 +7,92 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── Aspect ratio portret pentru imagini ── */
+    .work-artwork.ps-gallery-single,
+    .work-artwork.ps-gallery {
+      aspect-ratio: 4/3;
+      cursor: zoom-in;
+    }
+
+    .work-artwork.ps-gallery-single img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      background: #f0f5fa;
+    }
+    .ps-gallery {
+      position: relative;
+      overflow: hidden;
+    }
+    .ps-gallery img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      background: #f0f5fa;
+      display: none;
+      cursor: zoom-in;
+    }
+    .ps-gallery img.active { display: block; }
+
+    /* Indicator zoom */
+    .ps-zoom-hint {
+      position: absolute; top: 8px; right: 8px;
+      background: rgba(0,0,0,0.45); color: white;
+      font-size: 0.85rem; padding: 3px 7px; border-radius: 8px;
+      pointer-events: none; opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .work-artwork.ps-gallery-single:hover .ps-zoom-hint,
+    .work-artwork.ps-gallery:hover .ps-zoom-hint { opacity: 1; }
+
+    .ps-gallery-nav {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 6px 10px;
+      background: linear-gradient(to top, rgba(0,27,64,0.65) 0%, transparent 100%);
+    }
+    .ps-gallery-nav button {
+      background: rgba(255,255,255,0.18);
+      color: white; border: 1px solid rgba(255,255,255,0.35);
+      width: 32px; height: 32px; border-radius: 50%;
+      font-size: 1.3rem; line-height: 1; display: flex;
+      align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s;
+      flex-shrink: 0; z-index: 2;
+    }
+    .ps-gallery-nav button:hover { background: rgba(0,133,199,0.75); }
+    .ps-gallery-counter {
+      background: rgba(0,0,0,0.45); color: white;
+      font-size: 0.72rem; font-weight: 700;
+      padding: 2px 9px; border-radius: 10px; letter-spacing: 0.05em;
+    }
+
+    /* ── Buton „Citește lucrarea" ── */
+    .lb-open-btn {
+      width: 100%; padding: 8px 12px;
+      background: rgba(0,59,115,0.06);
+      border: none; border-top: 1px solid rgba(189,213,234,0.25);
+      color: var(--c-accent); font-size: 0.8rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+      font-family: inherit; letter-spacing: 0.02em;
+    }
+    .lb-open-btn:hover { background: rgba(0,59,115,0.13); }
+
+    /* ── Secțiuni pe nivel ── */
+    .ps-class-section { margin-bottom: 3.5rem; }
+    .ps-class-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.75rem; padding-bottom: 0.9rem;
+      border-bottom: 2px solid rgba(189,213,234,0.35);
+    }
+    .ps-class-badge {
+      background: var(--grad-primary); color: white;
+      padding: 6px 22px; border-radius: 50px;
+      font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.05em; white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(0,59,115,0.22);
+    }
+    .ps-class-count { font-size: 0.82rem; color: var(--t-soft); }
+  </style>
 </head>
 <body>
 
@@ -18,7 +104,7 @@
     <div class="breadcrumb"><a href="../index.html">Acasă</a><span>/</span><a href="mesaje-albastre-detalii.html">Mesaje Albastre</a><span>/</span><span>Votează</span></div>
     <span class="hero-label">❤ Votul Publicului</span>
     <h1>Lucrări Mesaje Albastre</h1>
-    <p>Votează lucrarea ta preferată! Fiecare lucrare poate fi votată o singură dată.</p>
+    <p>Votează lucrarea ta preferată! Fiecare lucrare poate fi votată o singură dată per browser.</p>
   </div>
   <div class="page-hero-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80Z" fill="white"/></svg></div>
 </section>
@@ -29,25 +115,25 @@
     <div style="display:flex; align-items:center; gap:0.75rem">
       <div style="width:10px; height:10px; border-radius:50%; background:#22c55e; animation:pulseBadge 1.5s infinite"></div>
       <span style="font-weight:700; color:var(--c-dark)">Votarea este deschisă!</span>
-      <span style="font-size:0.85rem; color:var(--t-soft)">Până pe 10 Martie 2025</span>
+      <span style="font-size:0.85rem; color:var(--t-soft)">Până pe 20 Mai 2026</span>
     </div>
     <div style="display:flex; gap:1.5rem; align-items:center">
-      <span style="font-size:0.88rem; color:var(--t-soft)">ℹ️ Un vot per lucrare, per browser</span>
+      <span style="font-size:0.88rem; color:var(--t-soft)">🎨 23 lucrări în concurs · 2 categorii</span>
       <a href="mesaje-albastre-detalii.html" class="btn btn-light btn-sm">Regulament →</a>
     </div>
   </div>
 </div>
 
-<!-- Works grid -->
+<!-- Lucrări grupate pe nivel -->
 <section class="section">
   <div class="container">
     <div class="section-header">
-      <span class="section-label">10 Lucrări Înscrise</span>
-      <h2 class="section-title">Alege favorita ta!</h2>
-      <p class="section-desc">Votul publicului contribuie cu 50% la punctajul final. Fiecare vot contează!</p>
+      <span class="section-label">23 Lucrări Înscrise</span>
+      <h2 class="section-title">Alege lucrarea ta preferată!</h2>
+      <p class="section-desc">Descoperă lucrările claselor înscrise și votează cu inima. Fiecare vot contribuie la premierea celor mai inspirate mesaje.</p>
     </div>
-    <div class="works-grid" id="worksGridMA">
-      <!-- Populated by voturi.js -->
+
+    <div id="maGroupsContainer">
       <div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--t-soft)">
         <div style="font-size:2rem; margin-bottom:1rem">🔄</div>
         Se încarcă lucrările...
