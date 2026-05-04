@@ -110,9 +110,9 @@
       <!-- Info -->
       <div style="margin-top:2rem; padding:1.25rem 1.5rem; background:rgba(0,133,199,0.06); border-radius:var(--radius-sm); border:1px solid rgba(0,133,199,0.15)">
         <p style="margin:0; font-size:0.85rem; color:var(--t-soft)">
-          ℹ️ <strong>Notă:</strong> Voturile sunt stocate în localStorage-ul browserelor utilizatorilor.
-          Exportul JSON conține datele agregate disponibile.
-          Parola de administrator poate fi schimbată în fișierul <code>js/voturi.js</code>, variabila <code>ADMIN_PASSWORD</code>.
+          ℹ️ <strong>Notă:</strong> Voturile sunt stocate global în <strong>Firebase Realtime Database</strong> — toți utilizatorii contribuie la același clasament, iar adminul vede datele în timp real.
+          Fiecare browser poate vota o singură dată per lucrare (verificare localStorage).
+          Parola de administrator: variabila <code>ADMIN_PASSWORD</code> din <code>js/voturi.js</code>.
         </p>
       </div>
 
@@ -122,37 +122,24 @@
   <div id="footer-placeholder"></div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script src="../js/main.js"></script>
 <script src="../js/voturi.js"></script>
 <script>
-// Update last update time
-document.getElementById('lastUpdate').textContent = new Date().toLocaleString('ro-RO');
+/* Înregistrează callback-ul top3 — apelat automat la fiecare actualizare Firebase */
+window._adminCallbacks = window._adminCallbacks || {};
+window._adminCallbacks['votes_ma'] = function(votes) { renderTop3(votes); };
 
-// Render top 3 after admin panel loads
-const origInitAdmin = window.initAdmin;
-document.addEventListener('DOMContentLoaded', () => {
-  // Override to also render top 3
-  const observer = new MutationObserver(() => {
-    if (document.getElementById('adminPanel').style.display !== 'none') {
-      renderTop3();
-      observer.disconnect();
-    }
-  });
-  observer.observe(document.getElementById('adminPanel'), { attributes: true });
-});
-
-function renderTop3() {
-  const votes = JSON.parse(localStorage.getItem('votes_ma') || '{}');
-  const sorted = LUCRARI_MESAJE_ALBASTRE.map(l => ({...l, count: votes[l.id] || 0})).sort((a,b) => b.count - a.count);
-  const top3 = sorted.slice(0, 3);
-  const medals = ['🥇', '🥈', '🥉'];
-  const colors = [
-    'linear-gradient(135deg,#f6d365,#fda085)',
-    'linear-gradient(135deg,#a8b8c8,#8ea5b8)',
-    'linear-gradient(135deg,#cd7f32,#a06020)'
-  ];
+function renderTop3(votes) {
+  const sorted = LUCRARI_MESAJE_ALBASTRE
+    .map(l => ({ ...l, count: votes[l.id] || 0 }))
+    .sort((a, b) => b.count - a.count);
+  const top3    = sorted.slice(0, 3);
+  const medals  = ['🥇', '🥈', '🥉'];
+  const borders = ['#f6d365', '#a8b8c8', '#cd7f32'];
   document.getElementById('top3Grid').innerHTML = top3.map((l, i) => `
-    <div style="background:white; border-radius:var(--radius); padding:1.5rem; text-align:center; box-shadow:var(--shadow-sm); border:2px solid ${i===0?'#f6d365':i===1?'#a8b8c8':'#cd7f32'}">
+    <div style="background:white; border-radius:var(--radius); padding:1.5rem; text-align:center; box-shadow:var(--shadow-sm); border:2px solid ${borders[i]}">
       <div style="font-size:2.5rem; margin-bottom:0.5rem">${medals[i]}</div>
       <div style="width:48px;height:48px;border-radius:50%;background:${l.bg};display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 0.75rem">${l.icon}</div>
       <h4 style="font-size:0.95rem; margin-bottom:0.25rem; color:var(--c-dark)">${l.titlu}</h4>

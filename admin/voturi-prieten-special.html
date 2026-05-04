@@ -52,7 +52,7 @@
           <div>
             <span class="section-label">Panou Admin</span>
             <h1 style="font-size:2rem; margin-top:0.75rem">Voturi — Povestea unui Prieten Special</h1>
-            <p>Clasamentul poveștilor înscrise, sortat după voturile primite</p>
+            <p>Clasamentul lucrărilor înscrise, sortat după voturile primite · <strong>20 lucrări · 8 clase</strong></p>
           </div>
           <div>
             <div style="background:linear-gradient(135deg,#023e8a,#48cae4); color:white; padding:1rem 1.5rem; border-radius:var(--radius); text-align:center; box-shadow:var(--shadow-md)">
@@ -77,8 +77,8 @@
 
       <!-- Top 3 -->
       <div style="background:linear-gradient(135deg,rgba(2,62,138,0.05),rgba(72,202,228,0.08)); border-radius:var(--radius-lg); padding:2.5rem; margin-bottom:2.5rem; border:1px solid rgba(72,202,228,0.2)">
-        <h3 style="margin-bottom:1.5rem; color:var(--c-dark)">🏆 Top 3 Povești</h3>
-        <div id="top3Grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem"></div>
+        <h3 style="margin-bottom:1.5rem; color:var(--c-dark)">🏆 Top 3 Lucrări</h3>
+        <div id="top3Grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem"></div>
       </div>
 
       <!-- Table -->
@@ -88,7 +88,7 @@
           <thead>
             <tr>
               <th style="width:60px">Loc</th>
-              <th>Poveste</th>
+              <th>Autor / Școală</th>
               <th style="min-width:160px">Voturi</th>
               <th>ID</th>
             </tr>
@@ -101,9 +101,9 @@
 
       <div style="margin-top:2rem; padding:1.25rem 1.5rem; background:rgba(2,62,138,0.06); border-radius:var(--radius-sm); border:1px solid rgba(72,202,228,0.2)">
         <p style="margin:0; font-size:0.85rem; color:var(--t-soft)">
-          ℹ️ <strong>Notă:</strong> Voturile sunt stocate în localStorage-ul browserelor utilizatorilor.
-          Exportul JSON conține datele agregate disponibile.
-          Parola: variabila <code>ADMIN_PASSWORD</code> din <code>js/voturi.js</code>.
+          ℹ️ <strong>Notă:</strong> Voturile sunt stocate global în <strong>Firebase Realtime Database</strong> — toți utilizatorii contribuie la același clasament, iar adminul vede datele în timp real.
+          Fiecare browser poate vota o singură dată per lucrare (verificare localStorage).
+          Parola de administrator: variabila <code>ADMIN_PASSWORD</code> din <code>js/voturi.js</code>.
         </p>
       </div>
 
@@ -113,37 +113,42 @@
   <div id="footer-placeholder"></div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script src="../js/main.js"></script>
 <script src="../js/voturi.js"></script>
 <script>
-document.getElementById('lastUpdate').textContent = new Date().toLocaleString('ro-RO');
+/* Înregistrează callback-ul top3 — apelat automat la fiecare actualizare Firebase */
+window._adminCallbacks = window._adminCallbacks || {};
+window._adminCallbacks['votes_ps'] = function(votes) { renderTop3PS(votes); };
 
-document.addEventListener('DOMContentLoaded', () => {
-  const observer = new MutationObserver(() => {
-    if (document.getElementById('adminPanel').style.display !== 'none') {
-      renderTop3PS();
-      observer.disconnect();
-    }
-  });
-  observer.observe(document.getElementById('adminPanel'), { attributes: true });
-});
-
-function renderTop3PS() {
-  const votes = JSON.parse(localStorage.getItem('votes_ps') || '{}');
-  const sorted = LUCRARI_PRIETEN_SPECIAL.map(l => ({...l, count: votes[l.id] || 0})).sort((a,b) => b.count - a.count);
-  const top3 = sorted.slice(0, 3);
-  const medals = ['🥇', '🥈', '🥉'];
+function renderTop3PS(votes) {
+  const sorted  = LUCRARI_PRIETEN_SPECIAL
+    .map(l => ({ ...l, count: votes[l.id] || 0 }))
+    .sort((a, b) => b.count - a.count);
+  const top3    = sorted.slice(0, 3);
+  const medals  = ['🥇', '🥈', '🥉'];
   const borders = ['#f6d365', '#a8b8c8', '#cd7f32'];
-  document.getElementById('top3Grid').innerHTML = top3.map((l, i) => `
+  const imgBase = '../prietenul_special/';
+
+  document.getElementById('top3Grid').innerHTML = top3.map((l, i) => {
+    const thumbUrl  = (l.images && l.images.length > 0 && l.folderPath)
+      ? imgBase + l.folderPath + '/' + encodeURIComponent(l.images[0])
+      : null;
+    const thumbHtml = thumbUrl
+      ? `<img src="${thumbUrl}" alt="${l.autor}" style="width:72px;height:72px;object-fit:cover;border-radius:10px;margin:0 auto 0.75rem;display:block;box-shadow:0 2px 8px rgba(0,0,0,0.15);">`
+      : `<div style="width:72px;height:72px;border-radius:10px;background:${l.bg};display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 0.75rem">${l.icon}</div>`;
+    return `
     <div style="background:white; border-radius:var(--radius); padding:1.5rem; text-align:center; box-shadow:var(--shadow-sm); border:2px solid ${borders[i]}">
-      <div style="font-size:2.5rem; margin-bottom:0.5rem">${medals[i]}</div>
-      <div style="width:48px;height:48px;border-radius:50%;background:${l.bg};display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 0.75rem">${l.icon}</div>
-      <h4 style="font-size:0.9rem; margin-bottom:0.25rem; color:var(--c-dark)">${l.titlu}</h4>
-      <p style="font-size:0.78rem; color:var(--t-soft); margin-bottom:0.75rem">${l.autor}</p>
+      <div style="font-size:2.5rem; margin-bottom:0.75rem">${medals[i]}</div>
+      ${thumbHtml}
+      <h4 style="font-size:0.9rem; margin-bottom:0.2rem; color:var(--c-dark)">${l.autor}</h4>
+      <p style="font-size:0.76rem; color:var(--c-mid); font-weight:700; margin-bottom:0.2rem">${l.clasa}</p>
+      <p style="font-size:0.72rem; color:var(--t-soft); margin-bottom:0.75rem; line-height:1.4">${l.scoala}</p>
       <div style="font-size:1.6rem; font-weight:900; color:var(--c-dark); font-family:'Playfair Display',serif">${l.count}</div>
       <div style="font-size:0.72rem; color:var(--t-soft); text-transform:uppercase; letter-spacing:0.1em">voturi</div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 </script>
 </body>
