@@ -247,7 +247,7 @@ const LUCRARI_MESAJE_ALBASTRE = [
     profesor: 'Dulcianu Andreea Cornelia',
     nivelGroup: 'G', nivelLabel: 'Gimnaziu',
     imgBase: '../mesaje_albastre/gimnaziu/',
-    images: ['aVIIa_aVIII-a_Școala Gimnazială „Ștefan cel Mare și Sfânt" Dobrovăț_Dobrovăț_Iași_Dulcianu Andreea Cornelia.jpeg'],
+    images: ['aVIIa_aVIII-a_Școala Gimnazială Ștefan cel Mare și Sfânt Dobrovăț_Dobrovăț_Iași_Dulcianu Andreea Cornelia.jpeg'],
     icon: '🌙', bg: 'linear-gradient(135deg,#003B73,#023e8a)'
   },
   /* ── Liceu ── */
@@ -278,7 +278,7 @@ const LUCRARI_MESAJE_ALBASTRE = [
     profesor: 'Hriscu Cristina',
     nivelGroup: 'L', nivelLabel: 'Liceu',
     imgBase: '../mesaje_albastre/liceu/',
-    images: ['XIA_Colegiul Tehnic „Ion Holban"_Iași_Iași_Hriscu Cristina.jpeg'],
+    images: ['XIA_Colegiul Tehnic Ion Holban_Iași_Iași_Hriscu Cristina.jpeg'],
     icon: '✨', bg: 'linear-gradient(135deg,#0085C7,#023e8a)'
   },
   {
@@ -376,8 +376,8 @@ const LUCRARI_PRIETEN_SPECIAL = [
     icon: '📖', bg: 'linear-gradient(135deg,#0085C7,#48cae4)',
     folderPath: 'VI/18',
     images: [
-      'POPA ANAIS MARIE_CLASA VI_ȘCOALA GIMNAZIALĂ „CONSTANTIN PLATON„ BACĂU_BACĂU_PROF. NECULCEA MARIA-MANUELA (1) (1)_Page_1.jpg',
-      'POPA ANAIS MARIE_CLASA VI_ȘCOALA GIMNAZIALĂ „CONSTANTIN PLATON„ BACĂU_BACĂU_PROF. NECULCEA MARIA-MANUELA (1) (1)_Page_2.jpg'
+      'POPA ANAIS MARIE_CLASA VI_ȘCOALA GIMNAZIALĂ CONSTANTIN PLATON BACĂU_BACĂU_PROF. NECULCEA MARIA-MANUELA (1) (1)_Page_1.jpg',
+      'POPA ANAIS MARIE_CLASA VI_ȘCOALA GIMNAZIALĂ CONSTANTIN PLATON BACĂU_BACĂU_PROF. NECULCEA MARIA-MANUELA (1) (1)_Page_2.jpg'
     ]
   },
   /* ── Clasa a VII-a ── */
