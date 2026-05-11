@@ -159,6 +159,66 @@ const ANUNT4_HTML = `
 `.trim();
 
 /* ─── ANUNȚURI ─── */
+const ANUNT14_HTML = `
+<p>Vă prezentăm lucrările care au primit aprecierea și susținerea publicului în cadrul Campaniei Naționale de Conștientizare a Autismului <strong>„Albastru pentru Solidaritate"</strong> – ediția a XIII-a. Felicitări tuturor participanților pentru creativitate, sensibilitate și implicare!</p>
+
+<h4 style="margin:1.5rem 0 0.75rem; color:var(--c-dark); font-family:'Playfair Display',serif">📖 Povestea unui Prieten Special</h4>
+<div style="overflow-x:auto">
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem">
+    <thead>
+      <tr style="background:var(--c-accent); color:#fff">
+        <th style="padding:0.6rem 1rem; text-align:left; border-radius:6px 0 0 0">Nume</th>
+        <th style="padding:0.6rem 1rem; text-align:left">Clasa</th>
+        <th style="padding:0.6rem 1rem; text-align:left">Școala</th>
+        <th style="padding:0.6rem 1rem; text-align:center; border-radius:0 6px 0 0">Voturi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--c-light)">
+        <td style="padding:0.6rem 1rem; font-weight:700">🥇 Popa Anais Marie</td>
+        <td style="padding:0.6rem 1rem">Clasa a VI-a</td>
+        <td style="padding:0.6rem 1rem">Școala Gimnazială „Constantin Platon", Bacău</td>
+        <td style="padding:0.6rem 1rem; text-align:center; font-weight:700; color:var(--c-accent)">984</td>
+      </tr>
+      <tr style="background:#fff">
+        <td style="padding:0.6rem 1rem; font-weight:700">🥈 Pața Daria Ecaterina</td>
+        <td style="padding:0.6rem 1rem">Clasa a X-a C</td>
+        <td style="padding:0.6rem 1rem">Colegiul Tehnic Gheorghe Asachi, Iași</td>
+        <td style="padding:0.6rem 1rem; text-align:center; font-weight:700; color:var(--c-accent)">962</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h4 style="margin:1.75rem 0 0.75rem; color:var(--c-dark); font-family:'Playfair Display',serif">🎨 Mesaje Albastre</h4>
+<div style="overflow-x:auto">
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem">
+    <thead>
+      <tr style="background:var(--c-accent); color:#fff">
+        <th style="padding:0.6rem 1rem; text-align:left; border-radius:6px 0 0 0">Clasa</th>
+        <th style="padding:0.6rem 1rem; text-align:left">Școala</th>
+        <th style="padding:0.6rem 1rem; text-align:center; border-radius:0 6px 0 0">Voturi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--c-light)">
+        <td style="padding:0.6rem 1rem; font-weight:700">🥇 Clasa a VII-a A</td>
+        <td style="padding:0.6rem 1rem">Școala Gimnazială nr. 1, Costești</td>
+        <td style="padding:0.6rem 1rem; text-align:center; font-weight:700; color:var(--c-accent)">4.304</td>
+      </tr>
+      <tr style="background:#fff">
+        <td style="padding:0.6rem 1rem; font-weight:700">🥈 Clasa a IX-a C</td>
+        <td style="padding:0.6rem 1rem">Liceul Tehnologic de Transporturi și de Construcții, Iași</td>
+        <td style="padding:0.6rem 1rem; text-align:center; font-weight:700; color:var(--c-accent)">712</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p style="margin-top:1.5rem">💙 <strong>Mulțumim tuturor celor care au votat și au susținut creativitatea și empatia elevilor noștri!</strong></p>
+<p style="color:var(--c-mid); font-size:0.88rem; margin-top:0.75rem"><em>#AlbastruPentruSolidaritate #PremiulPublicului #MesajeAlbastre #PovesteaUnuiPrietenSpecial</em></p>
+`.trim();
+
 const ANUNT10_HTML = `
 <p>💙 S-a deschis perioada de înscriere pentru concursul național de bannere <strong>„Mesaje albastre"</strong>, organizat în cadrul Campaniei Naționale de Conștientizare a Autismului <strong>„Albastru pentru Solidaritate"</strong>.</p>
 <p style="margin-top:1rem">
@@ -203,6 +263,15 @@ const ANUNT13_HTML = `
 `.trim();
 
 const ANUNTURI_DATA = [
+  {
+    id: 18,
+    titlu: '🎉 Premiul Special al Publicului — Rezultate finale',
+    rezumat: '🏆 Vă prezentăm lucrările câștigătoare ale Premiului Special al Publicului în cadrul Campaniei „Albastru pentru Solidaritate" – ediția a XIII-a. Felicitări tuturor participanților!',
+    text: ANUNT14_HTML,
+    imagine: '',
+    data: '11 Mai 2026',
+    nou: true
+  },
   {
     id: 17,
     titlu: '📢 Anunț important privind înscrierea la concursuri',
