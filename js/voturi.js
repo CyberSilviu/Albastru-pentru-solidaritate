@@ -4,7 +4,8 @@
    ============================================================ */
 
 /* ─── CONFIGURARE ─── */
-const ADMIN_PASSWORD = 'albastru2025';
+const ADMIN_PASSWORD  = 'albastru2025';
+const VOTING_CLOSED   = true;   // true = votarea închisă; false = votarea deschisă
 
 /* ─── FIREBASE CONFIG ─── */
 const FIREBASE_CONFIG = {
@@ -534,6 +535,12 @@ window.doVote = function(storageKey, workId) {
   const countEl = document.getElementById('count-' + workId);
   if (!btn || !countEl) return;
 
+  if (VOTING_CLOSED) {
+    btn.textContent = 'Votarea s-a încheiat';
+    btn.disabled = true;
+    return;
+  }
+
   const voted = getVoted(storageKey);
   if (voted.includes(workId)) {
     btn.textContent = '✓ Ai votat deja';
@@ -767,6 +774,14 @@ function buildImageCard(l, voted, storageKey) {
     ? `<p style="font-size:0.72rem;color:var(--c-mid);margin-top:2px">prof. ${l.profesor}</p>`
     : '';
 
+  const voteBtnHtml = VOTING_CLOSED
+    ? `<button class="vote-btn" id="vote-${l.id}" disabled>Votarea s-a încheiat</button>`
+    : `<button class="vote-btn${hasVoted ? ' voted' : ''}" id="vote-${l.id}"
+        ${hasVoted ? 'disabled' : ''}
+        onclick="doVote('${storageKey}','${l.id}')">
+        ${hasVoted ? '✓ Ai votat' : '❤ Votează'}
+      </button>`;
+
   return `
   <article class="work-card reveal" data-id="${l.id}">
     ${artworkHtml}
@@ -779,11 +794,7 @@ function buildImageCard(l, voted, storageKey) {
     </div>
     <div class="work-footer">
       <span class="vote-count" id="count-${l.id}">${HEART_SVG} — voturi</span>
-      <button class="vote-btn${hasVoted ? ' voted' : ''}" id="vote-${l.id}"
-        ${hasVoted ? 'disabled' : ''}
-        onclick="doVote('${storageKey}','${l.id}')">
-        ${hasVoted ? '✓ Ai votat' : '❤ Votează'}
-      </button>
+      ${voteBtnHtml}
     </div>
   </article>`;
 }
