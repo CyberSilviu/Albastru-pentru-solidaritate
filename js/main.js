@@ -445,7 +445,9 @@ function buildNavbar(root) {
         </ul>
       </li>
 
+      <!-- Galerie Foto ascunsă temporar:
       <li class="nav-item"><a href="${root}galerie.html" class="nav-link">Galerie Foto</a></li>
+      -->
       <li class="nav-item"><a href="${root}resurse.html" class="nav-link">Resurse și Materiale</a></li>
       <li class="nav-item">
         <a href="${root}anunturi.html" class="nav-link nav-anunturi">
